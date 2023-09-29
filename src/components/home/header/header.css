@@ -1,0 +1,42 @@
+.ku-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-color: #03a96b;
+  z-index: 1998;
+}
+
+.ku-header-title {
+  display: flex;
+  align-items: center;
+  flex: 5;
+  padding-left: 24%;
+  color: #fff;
+}
+.ku-header-noti-container {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ku-header-person-info {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+}
+
+.ku-header-icon-container {
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+}
+.ku-header-icon {
+  color: #fff;
+}

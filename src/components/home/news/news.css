@@ -1,0 +1,125 @@
+.ku-news-screen{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-family: 'Prompt';
+}
+.ku-news-screen-container{
+    flex: 2;
+    height:100%;
+    
+}
+.ku-day {
+  color: rgb(1, 169, 107);
+  padding: 0 22px;
+}
+.ku-welcome {
+  padding: 10px 20px;
+}
+
+.ku-header {
+  padding: 5% 20%;
+  padding-bottom: 40px;
+  border-bottom: 1px solid black;
+}
+
+.ku-footer-container {
+  display: block;
+  position: relative;
+  align-items: flex-end;
+  bottom: 0;
+  width: 100%;
+  margin-top: 5%;
+  padding: 15px 20px;
+  padding-left: 20%;
+  border-top: 1px solid black;
+  background-color: lightblue;
+}
+
+.ku-semeter {
+  border: solid 0.5px rgb(123, 213, 13);
+  border-radius: 10px;
+  background-color: rgb(12, 163, 102);
+  color: white;
+  display: flex;
+  align-items: center;
+  
+}
+
+.ku-options {
+  margin-left: 25%;
+  margin-top: 2%;
+}
+
+.ku-subject-tap-selected {
+  border: 1px solid rgb(156, 221, 230);
+  background-color: rgb(40, 195, 215);
+  color: white;
+  border-radius: 5px;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+.ku-subject-tap {
+  
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.ku-normal-tap {
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.ku-normal-tap-selected {
+  border: 1px solid rgb(156, 221, 230);
+  background-color: rgb(40, 195, 215);
+  color: white;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.ku-announce-container {
+  background-color: white;
+  width: 65%;
+  padding-bottom: 2%;
+  margin-left: 25%;
+  margin-top: 10px;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 3px;
+  position: relative;
+}
+
+.ku-announce-header-container {
+  padding: 20px;
+  background-color: white;
+  border-bottom: 1px solid black;
+  align-items: center;
+}
+
+.ku-announce-icon {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, orange, red);
+
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+.ku-announce-chat-icon {
+  color: gray;
+  padding-bottom: 40px;
+}
+
+.ku-announce-body-container {
+    display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: rgb(245, 250, 243);
+  margin: 10px;
+  padding:12.5% 0;
+}
+

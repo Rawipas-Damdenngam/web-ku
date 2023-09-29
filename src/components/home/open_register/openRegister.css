@@ -1,0 +1,18 @@
+.ku-inner-layout {
+  margin: 6% 20%;
+}
+
+.ku-day {
+  color: rgb(1, 169, 107);
+}
+
+.ku-semeter {
+  border: solid 0.5px rgb(123, 213, 13);
+  border-radius: 10px;
+  background-color: rgb(12, 163, 102);
+  color: white;
+  padding: 0 15px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
