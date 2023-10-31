@@ -1,18 +1,199 @@
-.ku-inner-layout {
-  margin: 6% 20%;
-}
-
-.ku-day {
-  color: rgb(1, 169, 107);
-}
-
-.ku-semeter {
-  border: solid 0.5px rgb(123, 213, 13);
-  border-radius: 10px;
-  background-color: rgb(12, 163, 102);
-  color: white;
-  padding: 0 15px;
-  margin-left: 20px;
+.ku-home-button {
   display: flex;
   align-items: center;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  color: grey;
+  border-radius: 0.25rem;
+  padding: 0.438rem 1.125rem;
+  font-size: 14px;
+  cursor: pointer;
+}
+.ku-home-button:hover {
+  background: rgba(128, 128, 128, 0.2);
+}
+
+.ku-welcome-body {
+  display: flex;
+  justify-content: flex-end;
+}
+.ku-column {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  padding: 0 0.75rem;
+}
+.ku-column-left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8.3333%;
+  max-width: 50%;
+  padding: 0 0.75rem;
+  font-size: 0.984rem;
+}
+.ku-column-right {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  padding: 0 0.75rem;
+  font-size: 0.984rem;
+}
+.ku-form-group {
+  margin-bottom: 1rem;
+}
+.ku-form-label {
+  margin-bottom: calc(0.438rem - 2px);
+}
+.ku-enroll-search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.ku-input-group {
+  position: relative;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.ku-input-main {
+  font-size: 12px;
+  width: 100% !important;
+}
+.ku-form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.54em + 0.876rem + 2px);
+  padding: 0.438rem 0.875rem;
+  font-size: 0.894rem;
+  font-weight: 400;
+  line-height: 1.54;
+  color: #4e5155;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(24, 28, 33, 0.1);
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.ku-form-control:focus {
+  outline: none;
+  border-color: #07bc77;
+}
+.ku-clear-button {
+  position: absolute;
+
+  right: 0;
+  color: #bfbfbf;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  margin-left: 2px;
+
+  cursor: pointer;
+}
+
+.ku-button-icon {
+  display: inline-block;
+  width: calc(2.25276rem + 2px);
+  height: calc(2.25276rem + 2px);
+  padding: 0;
+  line-height: 2.25276rem;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border-radius: 0.25rem;
+  font-size: 0.894rem;
+}
+.ku-button {
+  display: inline-block;
+  font-weight: 400;
+  color: #4e5155;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.438rem 1.125rem;
+  font-size: 0.894rem;
+  line-height: 1.54;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.ku-button-info {
+  border-color: rgba(0, 0, 0, 0);
+  background: #28c3d7;
+  color: #fff;
+}
+
+.ku-col-50 {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 50%;
+  flex: 0 0 50%;
+  padding: 0 0.75rem;
+}
+.ku-col-33 {
+  position: relative;
+  width: 100%;
+  max-width: 33.3333%;
+  flex: 0 0 33.3333%;
+  padding: 0 0.75rem;
+}
+.ku-dropdown-toggle {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  background: #fff;
+  color: rgba(0, 0, 0, 0.85);
+}
+.ku-form-label {
+  margin-bottom: calc(0.438rem - 2px);
+  font-size: 0.83125rem;
+  padding-bottom: 0;
+}
+.ku-input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.ku-form-label {
+  margin-bottom: calc(0.438rem - 2px);
+  font-weight: 500;
+  font-size: 0.83125rem;
+  padding-bottom: 0;
+}
+.ku-badge {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.ku-badge-success {
+  background-color: #02bc77;
+  color: #fff;
+}
+.ku-badge-header {
+  font-size: 12px;
+  line-height: 22px;
+  padding: 0 10px;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+.ku-not-found-container {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+  height: 40vh;
+}
+.ku-not-found-text{
+  font-weight: 600;
+  font-size: 14px;
+  color: #828282;
+  text-align: center;
+  margin-top: 16px;
 }

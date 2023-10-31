@@ -1,0 +1,69 @@
+.ku-cols {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+.ku-cols.left{
+  flex:3
+}
+.ku-cols.right{
+  flex:1
+}
+.ku-button-style {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 9px 12px !important;
+  margin-right: 6px;
+}
+.ku-button-style:hover {
+  color: #3c8ae2;
+}
+.ku-button-success {
+  border-color: rgba(0, 0, 0, 0);
+  background: #02bc77;
+  color: #fff;
+}
+.ku-button-warning {
+  border-color: rgba(0, 0, 0, 0);
+  background: #ffd950;
+  color: #665720;
+}
+.ku-button-danger {
+  border-color: rgba(0, 0, 0, 0);
+  background: #d9534f;
+  color: #fff;
+}
+.ku-button-primary {
+  background: #5ec1d4;
+  color: #fff;
+}
+.ku-badge {
+  font-family: Prompt;
+  font-style: normal;
+  background: #5ec1d4;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 10px;
+  color: #fff;
+  padding: 2px 6px;
+}
+.ku-grade-text {
+  font-size: 0.75rem;
+}
+.ku-grade-number {
+  font-size: 0.75rem;
+  color: #5ec1d4;
+}
+.ku-green-line {
+  display: block;
+  box-sizing: border-box;
+  background: rgb(10, 187, 135);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top: 4px solid rgb(10, 187, 135);
+}
+

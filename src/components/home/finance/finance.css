@@ -1,0 +1,24 @@
+.ku-choose-finance button {
+  font-size: 0.875rem;
+  margin-right: 1rem;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  margin: 0 1rem 0 0;
+  background-color: rgb(94, 193, 212);
+}
+
+.ku-v-hairLine {
+  height: 3rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.17);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.ku-show-charge{
+    color: #01a96a;
+    padding: 0.5rem 0;
+    width: 60px;
+    height: 55px;
+    border-radius: 0.3rem;
+}

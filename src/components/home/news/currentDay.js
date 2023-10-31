@@ -1,4 +1,5 @@
-function CurrentDay() {
+function CurrentDay(props) {
+  const className = props.className;
   const date = [
     "วันอาทิตย์",
     "วันจันทร์",
@@ -31,7 +32,7 @@ function CurrentDay() {
     month[currentMonth]
   } ${currentYear + 543}`;
 
-  return <div>{getDay}</div>;
+  return <div className={className}>{getDay}</div>;
 }
 
 export default CurrentDay;

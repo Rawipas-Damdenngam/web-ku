@@ -1,0 +1,138 @@
+.ku-side-bar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  min-height: 100%;
+  background-color: rgba(24, 28, 33, 0.9);
+  color: #fff;
+  overflow-x: hidden;
+  z-index: 10;
+  white-space: nowrap;
+}
+.ku-side-bar.close:hover {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  min-height: 100%;
+  background-color: rgba(24, 28, 33, 0.9);
+  color: #fff;
+  overflow-x: hidden;
+  z-index: 10;
+  white-space: nowrap;
+}
+.ku-side-bar.close {
+  display: flex;
+  flex-direction: column;
+  width: 55px;
+  min-height: 100%;
+  background-color: rgba(24, 28, 33, 0.9);
+  color: #fff;
+  overflow-x: hidden;
+  transition: 0.3s;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.ku-side-bar-header {
+  display: flex;
+  padding: 0 28px;
+  height: 66px;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+.ku-side-bar-header .one {
+  flex: 1;
+
+  white-space: nowrap;
+}
+.ku-side-bar-header .one .icon {
+  width: 40px;
+  height: 40px;
+  background-color: skyblue;
+  border-radius: 100px;
+
+  white-space: nowrap;
+}
+.ku-side-bar-header .two {
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+.ku-side-bar-header .two .icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+.ku-side-bar-header .four {
+  flex: 4;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+.ku-side-bar-header .four .text-container {
+  font-size: 12px;
+  margin: 0 0 0 8px;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+.ku-name {
+  white-space: nowrap;
+}
+.ku-status {
+  white-space: nowrap;
+}
+.ku-info-text.close {
+  justify-content: center;
+}
+
+.ku-side-bar-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.ku-side-bar-items {
+  display: flex;
+  margin: 1px 0;
+  font-size: 14px;
+  color: grey;
+}
+.ku-side-bar-items:hover {
+  color: #fff;
+  transition: 0.2s;
+}
+.ku-side-bar-items.selected {
+  display: flex;
+  margin: 1px 0;
+  font-size: 14px;
+  color: #fff;
+  background-color: #03a96b;
+}
+.ku-side-bar-icon-container {
+  flex: 1;
+  margin: 0 4px 0 0;
+  white-space: nowrap;
+}
+.size {
+  width: 20px;
+  height: 20px;
+  white-space: nowrap;
+}
+
+.ku-side-bar-info-container {
+  flex: 6;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.ku-link {
+  display: flex;
+  width: 100%;
+  padding: 12px 32px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
