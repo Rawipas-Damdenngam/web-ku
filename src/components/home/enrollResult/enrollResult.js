@@ -10,6 +10,9 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useState } from "react";
 import "./enrollResult.css";
 function EnrollResult() {
+  const greenText = {
+    color: "rgb(10,187,135)",
+  };
   const [isSuccess, setIsSuccess] = useState(true);
   const [isWarning, setIsWarning] = useState(false);
   const [isDanger, setIsDanger] = useState(false);
@@ -161,7 +164,7 @@ function EnrollResult() {
                       </div>
                       <div className="flex">
                         <div>
-                          <span className="ku-badge">ภาคต้น 2566</span>
+                          <span className="ku-badge-blue">ภาคต้น 2566</span>
                         </div>
                       </div>
                     </div>
@@ -203,38 +206,101 @@ function EnrollResult() {
                             <div>01418490-60</div>
                             <div>Credit</div>
                           </div>
-                          <div className="block mt-1 mb-1 pr-1 pl-1 text-sm flex-1 w-64">
+                          <div className="block mt-1 mb-1 pr-3 pl-3 text-sm flex-1 w-64">
                             <div>สหกิจศึกษา</div>
                             <div>Cooperative Education</div>
                           </div>
-                          <div className="flex-1">
+                          <div className="flex-1 text-sm block mt-1.5 mb-1 pl-3">
                             <span>หมู่</span>
                             &nbsp;
-                            <span>201</span>
+                            <span style={greenText}>201</span>
                             &nbsp;
                           </div>
-                          <div className="flex-1">
-                            <span>ปฏิบัต</span>
+                          <div className="flex-1 text-sm block mt-1.5 mb-1 pl-3">
+                            <span className="ku-badge orange">ปฏิบัติ</span>
                           </div>
-                          <div className="flex-1">
+                          <div className="flex-1 text-sm block mt-1.5 mb-1 pl-3">
                             <div>6 หน่วยกิต</div>
                           </div>
-                          <div className="flex-1">6</div>
-                          <div className="flex-1">
-                            <div>
+                          <div className="flex-1 w-32"></div>
+                          <div className="flex-1 text-sm flex item-center justify-center ">
+                            <div className="flex items-center">
                               <IoIosArrowDown />
                             </div>
                           </div>
                         </div>
-                        <div className="ku-row">2</div>
+                        {/* <div className="ku-row">2</div> */}
                       </div>
                     </div>
                   </section>
                   <section
                     className="ku-cols right hidden xl:block"
-                    style={{ paddingTop: 32 + "px", paddingLeft: 22 + "px" }}
+                    style={{
+                      paddingTop: 32 + "px",
+                      paddingLeft: 22 + "px",
+                    }}
                   >
-                    col right
+                    <div
+                      className=""
+                      style={{
+                        padding: 16 + "px",
+                        width: 300 + "px",
+                        borderColor: "transparent",
+                        backgroundColor: "white",
+                      }}
+                    >
+                      <div>
+                        <p>ปีการศึกษา</p>
+                        <div className="ku-row pr-2">
+                          <div className="ku-col-33">
+                            <button
+                              type="button"
+                              className="ku-button secondary-filter m-1"
+                            >
+                              2566
+                            </button>
+                          </div>
+                          <div className="ku-col-33">
+                            <button
+                              type="button"
+                              className="ku-button secondary-filter m-1"
+                            >
+                              2565
+                            </button>
+                          </div>
+                          <div className="ku-col-33">
+                            <button
+                              type="button"
+                              className="ku-button secondary-filter m-1"
+                            >
+                              2564
+                            </button>
+                          </div>
+                          <div className="ku-col-33">
+                            <button
+                              type="button"
+                              className="ku-button secondary-filter m-1"
+                            >
+                              2563
+                            </button>
+                          </div>
+                          <div className="ku-col-33">
+                            <button
+                              type="button"
+                              className="ku-button secondary-filter m-1"
+                            >
+                              2562
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <div>2</div>
+                      <hr />
+                      <div>3</div>
+                      <hr />
+                      <div>4</div>
+                    </div>
                   </section>
                 </div>
               </div>

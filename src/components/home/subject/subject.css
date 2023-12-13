@@ -381,7 +381,7 @@
   flex-wrap: wrap;
 }
 .ku-row div {
-  flex: 1;
+  flex: auto;
 }
 .cols1 {
   display: flex;

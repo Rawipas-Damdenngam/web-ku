@@ -7,11 +7,11 @@
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
-.ku-cols.left{
-  flex:3
+.ku-cols.left {
+  flex: 3;
 }
-.ku-cols.right{
-  flex:1
+.ku-cols.right {
+  flex: 1;
 }
 .ku-button-style {
   font-size: 12px !important;
@@ -41,7 +41,7 @@
   background: #5ec1d4;
   color: #fff;
 }
-.ku-badge {
+.ku-badge-blue{
   font-family: Prompt;
   font-style: normal;
   background: #5ec1d4;
@@ -67,3 +67,26 @@
   border-top: 4px solid rgb(10, 187, 135);
 }
 
+.ku-badge {
+  display: inline-block;
+  border-radius: 10px;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.orange {
+  background: #f0906d;
+}
+.secondary-filter{
+  background:rgba(0, 0, 0, 0.05);
+}
+p{display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;}
