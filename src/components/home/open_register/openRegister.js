@@ -1,5 +1,6 @@
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
+import Year from "../news/currentYear";
 import "./openRegister.css";
 import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
 import { LuFileSearch2 } from "react-icons/lu";
@@ -16,6 +17,277 @@ function OpenRegister() {
   const [isShow, setIsShow] = useState(false);
   const handleShow = () => {
     setIsShow(!isShow);
+  };
+  function DisplayOpenRegister({ card }) {
+    if (card !== null) {
+      return (
+        <div
+          className="ku-card"
+          style={{ marginTop: 10 + "px", marginBottom: 10 + "px" }}
+        >
+          <div
+            style={{
+              height: 4 + "px",
+              background: "grey",
+              opacity: 0.5,
+              borderTopLeftRadius: 5 + "px",
+              borderTopRightRadius: 5 + "px",
+            }}
+          ></div>
+          <div
+            className="ku-row"
+            style={{
+              marginTop: 10 + "px",
+              marginLeft: 5 + "px",
+              marginRight: 5 + "px",
+            }}
+          >
+            <div className="ku-column-75">
+              <div className="ku-row">
+                <section
+                  className="flex ku-basis-1-12 items-center"
+                  style={{
+                    minWidth: 100 + "px",
+                  }}
+                >
+                  <span style={{ fontWeight: 600, fontSize: 12 + "px" }}>
+                    01418101-64
+                  </span>
+                </section>
+                <div className="ku-basis-5-6">
+                  <div className="ku-row">
+                    <section
+                      className="flex items-center"
+                      style={{
+                        maxwidth: 120 + "px",
+                        paddingLeft: 0.5 + "rem",
+                        paddingRight: 0.5 + "rem",
+                      }}
+                    >
+                      <div
+                        className="flex ku-text"
+                        style={{ marginRight: 0.5 + "rem" }}
+                      >
+                        <div className="flex">หมู่</div>
+                        <span style={{ marginLeft: 0.5 + "rem" }}>11</span>
+                      </div>
+                      <section className="flex">
+                        <div>
+                          <span className="ku-badge orange ">ปฏิบัติ</span>
+                        </div>
+                      </section>
+                    </section>
+                    <section
+                      className="flex items-center"
+                      style={{
+                        paddingLeft: 0.5 + "rem",
+                        paddingRight: 0.5 + "rem",
+                      }}
+                    >
+                      <span className="ku-text block">1 หน่วยกิต</span>
+                      <span className="block" style={{ marginLeft: 1 + "rem" }}>
+                        <span>
+                          <div>
+                            <HiMiniChatBubbleLeftEllipsis
+                              style={{
+                                color: "rgb(3 ,169 ,107)",
+                                fontSize: 20 + "px",
+                              }}
+                            />
+                          </div>
+                        </span>
+                      </span>
+                      <span></span>
+                    </section>
+                    <div></div>
+                  </div>
+                </div>
+                <div></div>
+              </div>
+              <section
+                className=""
+                style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
+              >
+                <div className="ku-row">
+                  <div>
+                    <div className="ku-text">การใช้งานคอมพิวเตอร์</div>
+                    <div className="ku-text">Computer Applications</div>
+                    <div className="ku-text">
+                      <span>ประเภทหมู่เรียน : </span>ปกติ
+                    </div>
+                    <div className="ku-text">
+                      <span style={{ color: "rgb(3 ,169 ,107)" }}>
+                        สามารถเรียนทดแทนวิชา :{" "}
+                      </span>
+                      -
+                    </div>
+                  </div>
+                  <div className="flex justify-center  px-3">
+                    <span
+                      className="ku-text inline-block"
+                      style={{ alignSelf: "flex-start" }}
+                    >
+                      <span>
+                        <span>THU 13:00 - 15:00 </span>
+                        <span
+                          style={{
+                            whiteSpace: "normal",
+                            textAlign: "left",
+                            color: "rgb(101,109,151)",
+                            display: "inline-block",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          ห้อง ONLINE
+                        </span>
+                        <br />
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div className="ku-column-25 px-3">
+              <div className="ku-row justify-start">
+                <section
+                  className="ku-basis-5-6 flex"
+                  style={{
+                    alignSelf: "center",
+                    marginTop: 5 + "px",
+                    marginBottom: 5 + "px",
+                  }}
+                >
+                  <div className="ku-row">
+                    <section className="qwerty col">
+                      55
+                      <p>จำนวนรับ</p>
+                    </section>
+                    <section className="qwerty col">
+                      38
+                      <p>ลงทะเบียนแล้ว</p>
+                    </section>
+                  </div>
+                </section>
+                <section className="ku-cursor  my-1.5 arrow  ">
+                  <div className="mt-2.5">
+                    <div onClick={handleShow}>
+                      {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div className={`${isShow ? "show" : "collapse"}`}>
+            <hr className=" mt-2 mb-1 " />
+          </div>
+
+          <div
+            className={`ku-row ${isShow ? "show" : "collapse"} my-2.5 mx-1.5  `}
+          >
+            <div className="basis-0 grow ">
+              <div className="ku-row my-0.5">
+                <section className="ku-basis-2-6 px-3">
+                  <div className="ku-row mb-1">
+                    <section>
+                      <div
+                        className="ku-text ku-basis-1-4 pr-0"
+                        style={{ color: "rgb(163,164,166)" }}
+                      >
+                        อาจารย์ผู้สอน
+                      </div>
+                    </section>
+                    <section>
+                      <div className="ku-text px-3">สุนทรี คุ้มไพโรจน์</div>
+                    </section>
+                  </div>
+                </section>
+                <section className="ku-basis-2-6 px-3">
+                  <div className="ku-row mb-4">
+                    <section
+                      className="ku-text ku-basis-2-6 px-3"
+                      style={{ color: "rgb(163,164,166)" }}
+                    >
+                      สาขาชั้นปีที่มีสิทธิ์
+                    </section>
+                    <section
+                      className="ku-text ku-basis-2-3 px-3"
+                      style={{ color: "rgb(163,164,166)" }}
+                    >
+                      -
+                    </section>
+
+                    <section className=""></section>
+                  </div>
+                  <div className="ku-row">
+                    <section className="ku-text ku-basis-2-6 px-3 block">
+                      <div
+                        style={{
+                          color: "rgb(163,164,166)",
+                          fontSize: 11.5 + "px",
+                        }}
+                      >
+                        สาขาชั้นปีที่ไม่มีสิทธิ์
+                      </div>
+                    </section>
+                    <section className="ku-text ku-basis-2-3 px-3">
+                      <div style={{ color: "rgb(163,164,166)" }}>-</div>
+                    </section>
+
+                    <section className=""></section>
+                  </div>
+                </section>
+                <section className="ku-basis-2-6 px-3">
+                  <div className="ku-row mb-4">
+                    <section className="ku-text ku-basis-2-6 px-3">
+                      <div style={{ color: "rgb(163,164,166)" }}>
+                        สอบกลางภาค
+                      </div>
+                    </section>
+                    <section className="ku-text ku-basis-2-3 px-3">
+                      <div style={{ color: "rgb(163,164,166)" }}>-</div>
+                    </section>
+                  </div>
+                  <div className="ku-row">
+                    <section className="ku-text ku-basis-2-6 px-3">
+                      <div style={{ color: "rgb(163,164,166)" }}>
+                        สอบปลายภาค
+                      </div>
+                    </section>
+                    <section className="ku-text ku-basis-2-3 px-3">
+                      <div style={{ color: "rgb(163,164,166)" }}>-</div>
+                    </section>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="ku-not-found-container">
+          <LuFileSearch2
+            style={{
+              width: 75 + "px",
+              height: 74 + "px",
+              color: "skyblue",
+            }}
+          />
+          <div className="ku-not-found-text">
+            หากต้องการค้นหารายวิชาที่เปิดให้ลงทะเบียน
+            <br />
+            ให้ค้นหาจากรหัสวิชา ,ชื่อรายวิชา
+          </div>
+        </div>
+      );
+    }
+  }
+  const [card, setCard] = useState({
+    title: "eiei",
+  });
+  const clearInfo = () => {
+    setCard(null);
   };
   return (
     <div className="ku-layout-wrapper">
@@ -72,7 +344,10 @@ function OpenRegister() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter">ภาคต้น 2566</div>
+                          <div className="semeter flex">
+                            ภาคต้น&nbsp;
+                            <Year />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -329,246 +604,10 @@ function OpenRegister() {
                     marginBottom: 0.25 + "rem",
                   }}
                 />
-                <div className="ku-not-found-container">
-                  <LuFileSearch2
-                    style={{
-                      width: 75 + "px",
-                      height: 74 + "px",
-                      color: "skyblue",
-                    }}
-                  />
-                  <div className="ku-not-found-text">
-                    หากต้องการค้นหารายวิชาที่เปิดให้ลงทะเบียน
-                    <br />
-                    ให้ค้นหาจากรหัสวิชา ,ชื่อรายวิชา
-                  </div>
-                </div>
-                <div
-                  className="ku-card"
-                  style={{ marginTop: 10 + "px", marginBottom: 10 + "px" }}
-                >
-                  <div
-                    style={{
-                      height: 4 + "px",
-                      background: "grey",
-                      opacity: 0.5,
-                      borderTopLeftRadius: 5 + "px",
-                      borderTopRightRadius: 5 + "px",
-                    }}
-                  ></div>
-                  <div
-                    className="ku-row"
-                    style={{
-                      marginTop: 10 + "px",
-                      marginLeft: 5 + "px",
-                      marginRight: 5 + "px",
-                    }}
-                  >
-                    <div className="ku-column-75">
-                      <div className="ku-row">
-                        <section
-                          className="flex ku-basis-1-12 items-center"
-                          style={{
-                            minWidth: 100 + "px",
-                          }}
-                        >
-                          <span
-                            style={{ fontWeight: 600, fontSize: 12 + "px" }}
-                          >
-                            01418101-64
-                          </span>
-                        </section>
-                        <div className="ku-basis-5-6">
-                          <div className="ku-row">
-                            <section
-                              className="flex items-center"
-                              style={{
-                                maxwidth: 120 + "px",
-                                paddingLeft: 0.5 + "rem",
-                                paddingRight: 0.5 + "rem",
-                              }}
-                            >
-                              <div
-                                className="flex ku-text"
-                                style={{ marginRight: 0.5 + "rem" }}
-                              >
-                                <div className="flex">หมู่</div>
-                                <span style={{ marginLeft: 0.5 + "rem" }}>
-                                  11
-                                </span>
-                              </div>
-                              <section className="flex">
-                                <div>
-                                  <span className="ku-badge orange ">
-                                    ปฏิบัติ
-                                  </span>
-                                </div>
-                              </section>
-                            </section>
-                            <section
-                              className="flex items-center"
-                              style={{
-                                paddingLeft: 0.5 + "rem",
-                                paddingRight: 0.5 + "rem",
-                              }}
-                            >
-                              <span className="ku-text block">1 หน่วยกิต</span>
-                              <span
-                                className="block"
-                                style={{ marginLeft: 1 + "rem" }}
-                              >
-                                <span>
-                                  <div>
-                                    <HiMiniChatBubbleLeftEllipsis
-                                      style={{
-                                        color: "rgb(3 ,169 ,107)",
-                                        fontSize: 20 + "px",
-                                      }}
-                                    />
-                                  </div>
-                                </span>
-                              </span>
-                              <span></span>
-                            </section>
-                            <div></div>
-                          </div>
-                        </div>
-                        <div></div>
-                      </div>
-                      <section
-                        className=""
-                        style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
-                      >
-                        <div className="ku-row">
-                          <div>
-                            <div className="ku-text">การใช้งานคอมพิวเตอร์</div>
-                            <div className="ku-text">Computer Applications</div>
-                            <div className="ku-text">
-                              <span>ประเภทหมู่เรียน : </span>ปกติ
-                            </div>
-                            <div className="ku-text">
-                              <span style={{ color: "rgb(3 ,169 ,107)" }}>
-                                สามารถเรียนทดแทนวิชา :{" "}
-                              </span>
-                              -
-                            </div>
-                          </div>
-                          <div className="flex justify-center px-3">
-                            <span className="ku-text inline-block">
-                              <span>
-                                <span>THU 13:00 - 15:00 </span>
-                                <span
-                                  style={{
-                                    whiteSpace: "normal",
-                                    textAlign: "left",
-                                    color: "rgb(101,109,151)",
-                                    display: "inline-block",
-                                    lineHeight: 1.7,
-                                  }}
-                                >
-                                  ห้อง ONLINE
-                                </span>
-                                <br />
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                    <div className="ku-column-25 px-3">
-                      <div className="ku-row justify-start">
-                        <section
-                          className="ku-basis-5-6 flex"
-                          style={{
-                            alignSelf: "center",
-                            marginTop: 5 + "px",
-                            marginBottom: 5 + "px",
-                          }}
-                        >
-                          <div className="ku-row">
-                            <section className="qwerty col">
-                              55
-                              <p>จำนวนรับ</p>
-                            </section>
-                            <section className="qwerty col">
-                              38
-                              <p>ลงทะเบียนแล้ว</p>
-                            </section>
-                          </div>
-                        </section>
-                        <section className="ku-cursor  my-1.5 arrow  ">
-                          <div className="mt-2.5">
-                            <div onClick={handleShow}>
-                              {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                            </div>
-                          </div>
-                        </section>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`collapse${isShow ? "show" : ""}`}>
-                    <hr className=" mt-2 mb-1 " />
-                  </div>
-
-                  <div
-                    className={`ku-row collapse my-2.5 mx-1.5 ${
-                      isShow ? "show" : ""
-                    } `}
-                  >
-                    <div className="basis-0 grow ">
-                      <div className="ku-row my-0.5">
-                        <section className="ku-basis-2-6 px-3">
-                          <div className="ku-row mb-1">
-                            <section>
-                              <div
-                                className="ku-text ku-basis-1-4 pr-0"
-                                style={{ color: "rgb(163,164,166)" }}
-                              >
-                                อาจารย์ผู้สอน
-                              </div>
-                            </section>
-                            <section>
-                              <div className="ku-text px-3">
-                                สุนทรี คุ้มไพโรจน์
-                              </div>
-                            </section>
-                          </div>
-                        </section>
-                        <section className="ku-basis-2-6 px-3">
-                          <div className="ku-row mb-4">
-                            <section
-                              className="ku-text ku-basis-2-6 px-3"
-                              style={{ color: "rgb(163,164,166)" }}
-                            >
-                              สาขาชั้นปีที่มีสิทธิ์
-                            </section>
-                            <section
-                              className="ku-text ku-basis-2-3 px-3"
-                              style={{ color: "rgb(163,164,166)" }}
-                            >
-                              -
-                            </section>
-
-                            <section className=""></section>
-                          </div>
-                          <div className="ku-row">
-                            <section className="ku-text ku-basis-2-6 px-3">
-                              <div style={{ color: "rgb(163,164,166)" }}>
-                                สาขาชั้นปีที่ไม่มีสิทธิ์
-                              </div>
-                            </section>
-                            <section className="ku-text ku-basis-2-3 px-3">
-                              <div style={{ color: "rgb(163,164,166)" }}>-</div>
-                            </section>
-
-                            <section className=""></section>
-                          </div>
-                        </section>
-                        <section className="ku-basis-2-6 px-3">3</section>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DisplayOpenRegister card={card} />
+                <button type="button" onClick={clearInfo}>
+                  clear
+                </button>
               </div>
             </div>
           </div>

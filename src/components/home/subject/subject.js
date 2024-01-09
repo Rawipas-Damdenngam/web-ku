@@ -2,6 +2,7 @@ import { Link, ScrollRestoration, useLocation } from "react-router-dom";
 import { useState } from "react";
 import "./subject.css";
 import Day from "../news/currentDay";
+import Year from "../news/currentYear";
 import {
   BsFillChatLeftDotsFill,
   BsPersonCircle,
@@ -124,7 +125,7 @@ function Subject() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter">ภาคต้น 2566</div>
+                          <div className="semeter flex">ภาคต้น&nbsp;<Year/></div>
                         </div>
                       </div>
                     </div>

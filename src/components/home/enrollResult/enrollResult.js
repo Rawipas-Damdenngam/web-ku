@@ -1,5 +1,6 @@
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
+import Year from "../news/currentYear";
 import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
 import { LuFileSearch2 } from "react-icons/lu";
 import { RiShutDownLine } from "react-icons/ri";
@@ -97,7 +98,7 @@ function EnrollResult() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter">ภาคต้น 2566</div>
+                          <div className="semeter flex">ภาคต้น&nbsp;<Year/></div>
                         </div>
                       </div>
                     </div>
@@ -164,7 +165,7 @@ function EnrollResult() {
                       </div>
                       <div className="flex">
                         <div>
-                          <span className="ku-badge-blue">ภาคต้น 2566</span>
+                          <span className="ku-badge-blue flex">ภาคต้น&nbsp;<Year/></span>
                         </div>
                       </div>
                     </div>

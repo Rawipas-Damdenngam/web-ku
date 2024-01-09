@@ -19,11 +19,6 @@ const handleDrawerOpen = () => {
   setWidth(!width);
   console.log(width);
 }
-
-
-
-  
-
   return (
     <nav className="">
       <div className={`ku-drawer-container ${width ? "": "close"}` }>

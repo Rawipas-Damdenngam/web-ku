@@ -255,6 +255,9 @@
   font-size: 12px;
 }
 .day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: rgb(3, 169, 107);
   font-size: 14px;
 }
@@ -486,12 +489,12 @@
 .ku-butt-group {
   display: inline-flex;
   position: relative;
-  vertical-align: middle;
+  vertical-align: center;
 }
 .ku-butt-group2 {
   display: inline-flex;
   position: relative;
-  vertical-align: middle;
+  vertical-align: center;
 }
 .ku-butt-group button {
   padding: 1px 6px;

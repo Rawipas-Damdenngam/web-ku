@@ -1,5 +1,6 @@
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
+import Year from "../news/currentYear";
 import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
 import { LuFileSearch2 } from "react-icons/lu";
 import { RiShutDownLine } from "react-icons/ri";
@@ -64,7 +65,7 @@ function Finance() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter">ภาคต้น 2566</div>
+                          <div className="semeter flex">ภาคต้น&nbsp;<Year/></div>
                         </div>
                       </div>
                     </div>
