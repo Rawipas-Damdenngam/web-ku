@@ -3,12 +3,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { DrawerProvider } from "./components/context/drawer_context";
+import { SubjectProvider } from "./components/context/subject_context";
 
 const el = document.getElementById("root");
 const root = ReactDOM.createRoot(el);
 
 root.render(
-  <DrawerProvider>
-    <App />
-  </DrawerProvider>
+  <SubjectProvider>
+    <DrawerProvider>
+      <App />
+    </DrawerProvider>
+  </SubjectProvider>
 );

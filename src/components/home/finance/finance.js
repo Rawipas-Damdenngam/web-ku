@@ -1,6 +1,8 @@
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
+import Subject from"../../../data/raw_subjects";
+import User from "../../../data/raw_users";
 import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
 import { LuFileSearch2 } from "react-icons/lu";
 import { RiShutDownLine } from "react-icons/ri";
@@ -10,6 +12,7 @@ import{BiSolidCalendarExclamation} from "react-icons/bi";
 import { useState } from "react";
 import "./finance.css";
 function Finance() {
+  const me = User[1];
   return (
     <div className="ku-layout-wrapper">
       <div className="ku-layout-inner">
@@ -35,7 +38,7 @@ function Finance() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>6310451367 รวิภาส ดำเด่นงาม</span>
+                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
                     </span>
                   </div>
                   <div className="five">

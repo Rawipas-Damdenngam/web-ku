@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./subject.css";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
+import Subject from "../../../data/raw_subjects";
+import User from "../../../data/raw_users";
 import {
   BsFillChatLeftDotsFill,
   BsPersonCircle,
@@ -27,7 +29,8 @@ import { MdAccountBox } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import DrawerNew from "../drawer/drawer_new";
 
-function Subject() {
+function Subjects() {
+  const me = User[1];
   const [isSubject, setIsSubject] = useState(true);
   const [isNormal, setIsNormal] = useState(false);
   const [isButtDisable1, setButtDisable1] = useState(false); // [true, false, false
@@ -95,7 +98,7 @@ function Subject() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>6310451367 รวิภาส ดำเด่นงาม</span>
+                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
                     </span>
                   </div>
                   <div className="five">
@@ -329,4 +332,4 @@ function Subject() {
   );
 }
 
-export default Subject;
+export default Subjects;

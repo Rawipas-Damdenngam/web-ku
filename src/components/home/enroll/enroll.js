@@ -1,6 +1,8 @@
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
+import Subject from "../../../data/raw_subjects";
+import User from "../../../data/raw_users";
 import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
 import { LuFileSearch2 } from "react-icons/lu";
 import { RiShutDownLine } from "react-icons/ri";
@@ -8,15 +10,431 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaFileCircleExclamation } from "react-icons/fa6";
 import { BiSolidCalendarExclamation } from "react-icons/bi";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { subjects } from "../class/class";
 import "./enroll.css";
+import { SubjectContext } from "../../context/subject_context";
+
 function Enroll() {
+  const me = User[1];
   const [expand, setExpand] = useState(false);
+  const [updateSearch, setUpdateSearch] = useState([]);
+  const [registerSubject, setRegisterSubject] = useState([]);
+  const [selectedRegisterSubject, setSelectedRegisterSubject] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [isShow, setIsShow] = useState(false);
+  const [isLab, setIsLab] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
+  const subjectContext = useContext(SubjectContext);
+  const [selectSection, setSelectSeection] = useState(null);
+
+  const addSubject = () => {
+    subjectContext.addSubject(selectSection);
+  };
+  const deleteSubject = (subject) => {
+    subjectContext.deleteSubject(subject);
+  };
+
+  const handleRegister = (section) => {
+    setIsRegister(true);
+    setSelectSeection(section);
+  };
+
+  const handleRegisterCancel = () => {
+    setIsRegister(false);
+  };
+
+  const handleRegisterConfirm = (result) => {
+    setIsRegister(false);
+    setRegisterSubject([...registerSubject, result]);
+  };
+
+  const handleShow = () => {
+    setIsShow(!isShow);
+  };
+
   const handleExpand = () => {
     setExpand(!expand);
   };
+  const [inputValue, setInputValue] = useState("");
+
+  const handleClearInput = () => {
+    setInputValue("");
+  };
+  const searchSubject = (number) => {
+    const results = subjects.filter((subject) =>
+      subject.subjectCode.includes(number)
+    );
+    console.log(results);
+    return results;
+  };
+  const updateSubject = (number) => {
+    setInputValue(number);
+    setUpdateSearch(searchSubject(number));
+  };
+
+  const ShowRegisterConfirm = ({ isRegister }) => {
+    if (isRegister) {
+      return (
+        <div className="ku-modal overlay">
+          <div>
+            <div className="ku-row" style={{ padding: 20 + "px" }}>
+              <div>
+                <span className="">ยืนยันการลงทะเบียน</span>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  className=""
+                  type="button"
+                  onClick={handleRegisterCancel}
+                >
+                  X
+                </button>
+              </div>
+            </div>
+            <div>
+              <hr />
+              <div className="ku-column p-6">
+                <label className="ku-row">เปลี่ยนประเภทการลงทะเบียน</label>
+                <div className="py-2">
+                  <select
+                    className="ku-form-control ku-dropdown-toggle"
+                    style={{ width: 220 + "px" }}
+                  >
+                    <option>Credit</option>
+                    <option>Audit</option>
+                  </select>
+                </div>
+              </div>
+              <hr className="mb-1" />
+              <div
+                className="ku-row flex justify-end"
+                style={{ padding: 20 + "px" }}
+              >
+                <button
+                  className="ku-button-style ku-button-danger"
+                  type="button"
+                  onClick={handleRegisterCancel}
+                  style={{ paddingLeft: 20 + "px", paddingRight: 20 + "px" }}
+                >
+                  ยกเลิก
+                </button>
+                <button
+                  className="ku-button-style ku-button-primary"
+                  type="button"
+                  onClick={() => {
+                    addSubject();
+                  }}
+                  style={{ paddingLeft: 20 + "px", paddingRight: 20 + "px" }}
+                >
+                  ลงทะเบียน
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  const Backdrop = ({ isRegister }) => {
+    if (isRegister) {
+      return <div className="backdrop"></div>;
+    }
+  };
+
+  const DisplayRegister = ({ selectedSubject }) => {
+    if (selectedSubject !== null) {
+      return selectedSubject.sections.map((section) => {
+        return (
+          <div
+            className="ku-card justify-center"
+            key={section.sectionId}
+            style={{
+              marginTop: 10 + "px",
+              marginBottom: 10 + "px",
+              minHeight: 80 + "px",
+            }}
+          >
+            <div
+              className="ku-row"
+              style={{
+                marginTop: 10 + "px",
+                marginLeft: 5 + "px",
+                marginRight: 5 + "px",
+              }}
+            >
+              <div className="ku-column">
+                <div className="ku-row">
+                  <div className="ku-basis-5-6">
+                    <div className="ku-row">
+                      <section
+                        className="flex items-center "
+                        style={{
+                          maxwidth: 120 + "px",
+                          paddingLeft: 0.5 + "rem",
+                          paddingRight: 0.5 + "rem",
+                        }}
+                      >
+                        <div
+                          className="flex flex-1  ku-text "
+                          style={{ marginRight: 0.5 + "rem" }}
+                        >
+                          <div className="flex">
+                            หมู่
+                            <span
+                              className="flex-1"
+                              style={{
+                                marginLeft: 0.5 + "rem",
+                                color: "rgb(10, 187, 135)",
+                              }}
+                            >
+                              {section.sectionCode}
+                            </span>
+                          </div>
+                        </div>
+                        {isLab ? (
+                          <section className="flex">
+                            <div>
+                              <span className="ku-badge orange ">
+                                {section.sectionTypeTh}
+                              </span>
+                            </div>
+                          </section>
+                        ) : (
+                          <section className="flex">
+                            <div>
+                              <span className="ku-badge blue ">
+                                {section.sectionTypeTh}
+                              </span>
+                            </div>
+                          </section>
+                        )}
+                      </section>
+
+                      <section
+                        className="flex"
+                        style={{
+                          paddingLeft: 0.5 + "rem",
+                          paddingRight: 0.5 + "rem",
+                          minWidth: 120 + "px",
+                        }}
+                      >
+                        <span className="ku-text block">
+                          {section.maxCredit} หน่วยกิต
+                        </span>
+                        <span
+                          className="block"
+                          style={{ marginLeft: 1 + "rem" }}
+                        ></span>
+                      </section>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      className="ku-button-style ku-button-primary"
+                      onClick={() => {
+                        handleRegister(section);
+                      }}
+                      style={{
+                        paddingLeft: 5 + "rem",
+                        paddingRight: 5 + "rem",
+                      }}
+                    >
+                      ลงทะเบียน
+                    </button>
+                  </div>
+                  <div
+                    className="flex ku-basis-1-12 justify-center items-center"
+                    onClick={handleShow}
+                  >
+                    {isShow ? (
+                      <IoIosArrowUp className="ku-cursor" />
+                    ) : (
+                      <IoIosArrowDown className="ku-cursor" />
+                    )}
+                  </div>
+                </div>
+                <section
+                  className=""
+                  style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
+                ></section>
+              </div>
+            </div>
+            <div className={`${isShow ? "show" : "collapse"}`}>
+              <hr className=" mt-2 mb-1 " />
+            </div>
+
+            <div
+              className={`ku-row ${
+                isShow ? "show" : "collapse"
+              } my-2.5 mx-1.5  `}
+            >
+              <div className="basis-0 grow ">
+                <div className="ku-row my-0.5">
+                  <section className="ku-basis-2-6 px-3">
+                    <div className="ku-row mb-1">
+                      <section>
+                        <div
+                          className="ku-text ku-basis-1-4 pr-0"
+                          style={{ color: "rgb(163,164,166)" }}
+                        >
+                          อาจารย์ผู้สอน
+                        </div>
+                      </section>
+                      <section>
+                        <div className="ku-text px-3">
+                          {section.teacherName}
+                        </div>
+                      </section>
+                    </div>
+                  </section>
+                  <section className="ku-basis-2-6 px-3">
+                    <div className="ku-row mb-4">
+                      <section
+                        className="ku-text ku-basis-2-6 px-3"
+                        style={{ color: "rgb(163,164,166)" }}
+                      >
+                        สาขาชั้นปีที่มีสิทธิ์
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        {section.property}
+                      </section>
+
+                      <section className=""></section>
+                    </div>
+                    <div className="ku-row">
+                      <section className="ku-text ku-basis-2-6 px-3 block">
+                        <div
+                          style={{
+                            color: "rgb(163,164,166)",
+                            fontSize: 11.5 + "px",
+                          }}
+                        >
+                          สาขาชั้นปีที่ไม่มีสิทธิ์
+                        </div>
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        <div>
+                          {section.nonProperty ? section.nonProperty : "-"}
+                        </div>
+                      </section>
+
+                      <section className=""></section>
+                    </div>
+                  </section>
+                  <section className="ku-basis-2-6 px-3">
+                    <div className="ku-row mb-4">
+                      <section className="ku-text ku-basis-2-6 px-3">
+                        <div style={{ color: "rgb(163,164,166)" }}>
+                          สอบกลางภาค
+                        </div>
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        <div>{section.midternDate}</div>
+                      </section>
+                    </div>
+                    <div className="ku-row">
+                      <section className="ku-text ku-basis-2-6 px-3">
+                        <div style={{ color: "rgb(163,164,166)" }}>
+                          สอบปลายภาค
+                        </div>
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        <div>{section.finalDate}</div>
+                      </section>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      });
+    } else {
+      return <div></div>;
+    }
+  };
+
+  const DisplaySuccess = () => {
+    console.log(selectedRegisterSubject);
+    console.log(subjectContext.subjects);
+    if (selectSection !== null) {
+      return subjectContext.subjects.map((section) => {
+        return (
+          <div
+            key={section.sectionCode}
+            className="ku-card"
+            style={{ marginTop: 5 + "px" }}
+          >
+            <div className="ku-green-line"></div>
+            <div
+              className="ku-row"
+              style={{
+                marginTop: 10 + "px",
+                marginBottom: 10 + "px",
+                marginLeft: 5 + "px",
+                marginRight: 5 + "px",
+              }}
+            >
+              <div
+                className="block mt-1 mb-1 flex-1 text-sm"
+                style={{
+                  textAlign: "center",
+                  minWidth: 100 + "px",
+                  maxWidth: 8.333 + "%",
+                }}
+              >
+                <div>{section.subjectCode}</div>
+                <div>Credit</div>
+              </div>
+              <div className="block  mt-1 mb-1 pr-3 pl-3 text-sm flex-1 w-64">
+                <div>{section.subjectNameTh}</div>
+                <div>{section.subjectNameEn}</div>
+              </div>
+              <div className="flex-1 text-sm block mt-1.5 mb-1 pl-3">
+                <span>หมู่</span>
+                &nbsp;
+                <span>{section.sectionCode}</span>
+                &nbsp;
+              </div>
+              <div className="flex-1 text-sm block mt-1.5 mb-1 pl-3">
+                <span className="ku-badge orange">{section.sectionTypeTh}</span>
+              </div>
+              <div className="flex-1 text-sm block mt-1.5 mb-1 pl-3">
+                <div>{section.maxCredit} หน่วยกิต</div>
+              </div>
+              <div className="flex-1 w-32 items-center justify-center">
+                <button
+                  className=" ku-button-style ku-button-danger  "
+                  type="button"
+                  onClick={() => {deleteSubject(section)}}
+                  style={{ paddingLeft: 5 + "rem", paddingRight: 5 + "rem" }}
+                >
+                  ถอน
+                </button>
+              </div>
+              <div className="flex-1 text-sm flex item-center justify-center ">
+                <div className="flex justify-end items-center">
+                  <IoIosArrowDown />
+                </div>
+              </div>
+            </div>
+            {/* <div className="ku-row">2</div> */}
+          </div>
+        );
+      });
+    } else {
+      return <div>ไม่พบรายวิชาที่ลงทะเบียน</div>;
+    }
+  };
+
   return (
     <div className="ku-layout-wrapper">
+      <div>
+        <Backdrop isRegister={isRegister} />
+      </div>
       <div className="ku-layout-inner">
         <DrawerNew />
 
@@ -40,7 +458,10 @@ function Enroll() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>6310451367 รวิภาส ดำเด่นงาม</span>
+                      <span>
+                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
+                        {me.lastNameTh}
+                      </span>
                     </span>
                   </div>
                   <div className="five">
@@ -76,6 +497,9 @@ function Enroll() {
                           </div>
                         </div>
                       </div>
+                      <div className="">
+                        <ShowRegisterConfirm isRegister={isRegister} />
+                      </div>
                     </div>
                     <div className="ku-welcome-inner-right">
                       <div className="ku-welcome-body"></div>
@@ -90,25 +514,61 @@ function Enroll() {
                     marginRight: -2 + "rem",
                   }}
                 />
-
-                <div className="ku-card" style={{ padding: 20 + "px" }}>
-                  <div
-                    className="ku-row items-center "
-                    style={{ height: 50 + "px" }}
-                  >
+                <div className="ku-text ku-row px-3">
+                  ค้นหารายวิชาเพื่อลงทะเบียน
+                </div>
+                <div className="ku-card" style={{ position: "relative" }}>
+                  <div style={{ position: "relative" }}>
+                    <input
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => updateSubject(e.target.value)}
+                      className="ku-input-main ku-form-control"
+                      placeholder="รหัสวิชา ,ชื่อวิชา"
+                    ></input>
                     <div
-                      className="flex basis-full grow max-w-full items-center justify-center"
-                      style={{ fontSize: 14 + "px" }}
+                      className={`ku-result-layout ${
+                        inputValue ? "" : "collapse"
+                      }`}
                     >
-                      <i
-                        className="ku-outline-warning"
-                        style={{ fontSize: 32 + "px" }}
-                      >
-                        <AiOutlineInfoCircle />
-                      </i>
-                      &nbsp;ไม่อยู่ในกำหนดการลงทะเบียน
+                      {updateSearch.map((results) => (
+                        <div
+                          className="ku-result-box"
+                          key={results.subjectCode}
+                        >
+                          <div
+                            className="ku-result-content"
+                            onClick={() => {
+                              setSelectedSubject(results);
+                              handleClearInput();
+                            }}
+                          >
+                            <div>{results.subjectCode}</div>
+                            <div>{results.subjectNameTh}</div>
+                            <div>{results.subjectNameEn}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={handleClearInput}
+                    className="ku-clear-button ku-button-icon"
+                  >
+                    <span
+                      style={{
+                        font: 20 + "px",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <AiOutlineClose />
+                    </span>
+                  </button>
+                </div>
+
+                <div className="">
+                  <DisplayRegister selectedSubject={selectedSubject} />
                 </div>
                 <div className="ku-row px-3">
                   <div>
@@ -143,251 +603,9 @@ function Enroll() {
                   </div>
                 </div>
                 <div className="ku-card">
-                  <div
-                    style={{
-                      height: 4 + "px",
-                      background: "rgb(10,187,135)",
-                      borderTopLeftRadius: 5 + "px",
-                      borderTopRightRadius: 5 + "px",
-                    }}
-                  ></div>
-                  <div className="ku-row my-2.5 mx-1.5">
-                    <section className="ku-basis-1-12 ku-column pl-0 pr-0 my-1.5 text-center self-center">
-                      <div className="ku-text ">01418441-60</div>
-                      <div className="ku-text text-center">Credit</div>
-                    </section>
-                    <section className="ku-basis-5-12 my-1.5 ku-column self-center ">
-                      <div className="ku-text">
-                        การจัดการมิติข้อมูลและรายงานทางธุรกิจ
-                      </div>
-                      <div className="ku-text">
-                        Business Data Dimension and Report Management
-                      </div>
-                    </section>
-                    <section className="ku-basis-1-12 mt-2 mb-1.5 ku-column pr-0 ku-text">
-                      <span>หมู่</span>
-                      &nbsp;
-                      <span style={{ color: "rgb(10,187,135)" }}>200</span>
-                      <div className="mt-1.5">
-                        <span>หมู่</span>
-                        &nbsp;
-                        <span style={{ color: "rgb(10,187,135)" }}>200</span>
-                        &nbsp;
-                      </div>
-                    </section>
-                    <section className="ku-basis-1-12 my-1.5 ku-column pr-0">
-                      <span className="ku-badge blue ku-badge-pill">
-                        บรรยาย
-                      </span>
-                      <div>
-                        <span className="ku-badge orange ku-badge-pill">
-                          ปฏิบัติ
-                        </span>
-                      </div>
-                    </section>
-                    <section className="ku-basis-1-12 mt-2 mb-1.5">
-                      <div className="text-center ku-text">2 หน่วยกิต</div>
-                      <div className="text-center ku-text mt-1.5">
-                        1 หน่วยกิต
-                      </div>
-                    </section>
-                    <section className="flex ku-basis-2-12 my-1.5 ku-column items-center">
-                      <button
-                        className="w-full ku-button button-danger items-center"
-                        type="button"
-                      >
-                        ถอน
-                      </button>
-                    </section>
-                    <section className="flex flex-1 max-w-12 my-1.5 mr-3 ">
-                      <div
-                        className="flex flex-1 justify-end items-center"
-                        style={{ width: 50 + "px", height: 50 + "px" }}
-                        onClick={handleExpand}
-                      >
-                        {expand ? (
-                          <IoIosArrowDown className="ku-cursor" />
-                        ) : (
-                          <IoIosArrowUp className="ku-cursor" />
-                        )}
-                      </div>
-                    </section>
-                  </div>
-                  <div className={`${expand ? "show" : "collapse"} `}>
-                    <hr className="mt-2 mb-1"></hr>
-                    <div className="ku-row flex my-2.5 mx-1.5">
-                      <section className="ku-column pl-0">
-                        <div className="ku-row mb-2">
-                          <section className="ku-column">
-                            <div className="ku-row">
-                              <section className="ku-col-33 pl-0 mb-3">
-                                <div className="ku-row ku-text my-0.5">
-                                  <section className="ku-column ku-basis-1-4 pl-0">
-                                    <span className="ku-badge ku-badge-pill blue">
-                                      บรรยาย
-                                    </span>
-                                  </section>
-                                  <section className="ku-column ku-basis-3-4 pl-0">
-                                    <div className="ku-row">
-                                      <section
-                                        className="ku-basis-5-12 ku-column pl-0"
-                                        style={{ minWidth: 120 + "px" }}
-                                      >
-                                        <div className="ku-text">
-                                          Sat 11:00 - 13:00
-                                        </div>
-                                      </section>
-                                      <section className="ku-basis-5-12 ku-column">
-                                        <div>SC45 - 708</div>
-                                      </section>
-                                    </div>
-                                  </section>
-                                </div>
-                              </section>
-                              <section className="ku-col-33 mb-3">
-                                <div className="ku-row ku-text mb-0.5">
-                                  <section
-                                    className="ku-column ku-basis-2-12 ku-text my-0.5"
-                                    style={{
-                                      minWidth: 100 + "px",
-                                      color: "grey",
-                                    }}
-                                  >
-                                    <div>อาจารย์ผู้สอน</div>
-                                  </section>
-                                  <section className="p-0 ku-column ku-basis-7-12">
-                                    <div
-                                      className="ku-text my-0.5
-                                    "
-                                    >
-                                      <span className="d-inline-block">
-                                        พบสิทธิ์ กมลเวชช &nbsp;
-                                      </span>
-                                    </div>
-                                  </section>
-                                </div>
-                              </section>
-                              <section className="ku-col-33 mb-3">
-                                <div className="ku-row mb-0.5">
-                                  <section
-                                    className="ku-text my-0.5"
-                                    style={{
-                                      minWidth: 100 + "px",
-                                      color: "grey",
-                                    }}
-                                  >
-                                    <div>สอบกลางภาค</div>
-                                  </section>
-                                  <section className="ku-text p-0 my-0.5">
-                                    <div>-</div>
-                                  </section>
-                                </div>
-                                <div className="ku-row mb-0.5">
-                                  {" "}
-                                  <section
-                                    className="ku-text my-0.5"
-                                    style={{
-                                      minWidth: 100 + "px",
-                                      color: "grey",
-                                    }}
-                                  >
-                                    <div>สอบปลายภาค</div>
-                                  </section>
-                                  <section className="ku-text p-0 my-0.5">
-                                    <div>-</div>
-                                  </section>
-                                </div>
-                              </section>
-                            </div>
-                          </section>
-                        </div>
-                        <div className="ku-row">
-                          <section className="ku-column">
-                            <div className="ku-row">
-                              <section className="ku-col-33 pl-0 mb-3">
-                                <div className="ku-row ku-text my-0.5">
-                                  <section className="ku-column ku-basis-1-4 pl-0">
-                                    <span className="ku-badge ku-badge-pill orange">
-                                      ปฏิบัติ
-                                    </span>
-                                  </section>
-                                  <section className="ku-column ku-basis-3-4 pl-0">
-                                    <div className="ku-row">
-                                      <section
-                                        className="ku-basis-5-12 ku-column pl-0"
-                                        style={{ minWidth: 120 + "px" }}
-                                      >
-                                        <div className="ku-text">
-                                          Sat 13:00 - 15:00
-                                        </div>
-                                      </section>
-                                      <section className="ku-basis-5-12 ku-column">
-                                        <div>SC45 - 708</div>
-                                      </section>
-                                    </div>
-                                  </section>
-                                </div>
-                              </section>
-                              <section className="ku-col-33 mb-3">
-                                <div className="ku-row ku-text mb-0.5">
-                                  <section
-                                    className="ku-column ku-basis-2-12 ku-text my-0.5"
-                                    style={{
-                                      minWidth: 100 + "px",
-                                      color: "grey",
-                                    }}
-                                  >
-                                    <div>อาจารย์ผู้สอน</div>
-                                  </section>
-                                  <section className="p-0 ku-column ku-basis-7-12">
-                                    <div
-                                      className="ku-text my-0.5
-                                    "
-                                    >
-                                      <span className="d-inline-block">
-                                        พบสิทธิ์ กมลเวชช &nbsp;
-                                      </span>
-                                    </div>
-                                  </section>
-                                </div>
-                              </section>
-                              <section className="ku-col-33 mb-3">
-                                <div className="ku-row mb-0.5">
-                                  <section
-                                    className="ku-text my-0.5"
-                                    style={{
-                                      minWidth: 100 + "px",
-                                      color: "grey",
-                                    }}
-                                  >
-                                    <div>สอบกลางภาค</div>
-                                  </section>
-                                  <section className="ku-text p-0 my-0.5">
-                                    <div>-</div>
-                                  </section>
-                                </div>
-                                <div className="ku-row mb-0.5">
-                                  {" "}
-                                  <section
-                                    className="ku-text my-0.5"
-                                    style={{
-                                      minWidth: 100 + "px",
-                                      color: "grey",
-                                    }}
-                                  >
-                                    <div>สอบปลายภาค</div>
-                                  </section>
-                                  <section className="ku-text p-0 my-0.5">
-                                    <div>-</div>
-                                  </section>
-                                </div>
-                              </section>
-                            </div>
-                          </section>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
+                  <DisplaySuccess
+                    selectedRegisterSubject={selectedRegisterSubject}
+                  />
                 </div>
               </div>
             </div>

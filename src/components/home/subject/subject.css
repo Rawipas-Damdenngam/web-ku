@@ -166,19 +166,23 @@
   padding: 0 12px;
 }
 .ku-sticky-top-bar .layout .right {
-  display: flex;
-  flex: 1;
+  display: block;
+  flex: 1 1;
   justify-content: flex-end;
 }
 .ku-sticky-top-bar .layout .right .inner-layout {
   display: flex;
+  flex: 0 1;
+  justify-content: flex-end;
   width: 100%;
-  margin: 0 0 0 220px;
+
   align-items: center;
 }
 .ku-sticky-top-bar .layout .right .inner-layout .one {
   display: flex;
-  flex: 3;
+  justify-content: flex-end;
+  flex: 1 0;
+  margin-right: 1rem;
 }
 .ku-sticky-top-bar .layout .right .inner-layout .one .bell {
   width: 20px;
@@ -186,14 +190,17 @@
 }
 .ku-sticky-top-bar .layout .right .inner-layout .two {
   display: flex;
-  flex: 3;
+  justify-content: flex-end;
 }
 .ku-sticky-top-bar .layout .right .inner-layout .three {
   display: flex;
-  flex: 2;
+  margin-left: 0.5rem;
 }
 .ku-sticky-top-bar .layout .right .inner-layout .four {
   display: flex;
+  justify-content: flex-end;
+
+  max-width: 250px;
   font-size: 14px;
   flex: 15;
   padding: 0 4px;
@@ -201,7 +208,6 @@
 }
 .ku-sticky-top-bar .layout .right .inner-layout .five {
   display: flex;
-  flex: 1;
 }
 .ku-sticky-top-bar .layout .right .inner-layout .five .poweroff {
   color: #fff;

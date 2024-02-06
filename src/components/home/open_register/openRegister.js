@@ -1,269 +1,328 @@
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
+import User from "../../../data/raw_users";
 import "./openRegister.css";
 import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
 import { LuFileSearch2 } from "react-icons/lu";
 import { RiShutDownLine } from "react-icons/ri";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { HiMiniChatBubbleLeftEllipsis } from "react-icons/hi2";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { subjects } from "../class/class";
 
 function OpenRegister() {
+  const me = User[1];
   const [inputValue, setInputValue] = useState("");
+  const [updateSearch, setUpdateSearch] = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [totalSeat, setTotalSeat] = useState(0);
+  const [totalRegistered, setTotalRegistered] = useState(0);
+
+  useEffect(() => {
+    let totalSeat = 0;
+    let totalRegistered = 0;
+    if (selectedSubject !== null) {
+      for (let i = 0; i < selectedSubject.sections.length; i++) {
+        const section = selectedSubject.sections[i];
+        totalSeat += parseInt(section.totalSeat);
+        totalRegistered += parseInt(section.totalRegistered);
+      }
+    }
+    setTotalSeat(totalSeat);
+    setTotalRegistered(totalRegistered);
+  }, [selectedSubject]);
+
   const handleClearInput = () => {
     setInputValue("");
+    setUpdateSearch([]);
   };
   const [isShow, setIsShow] = useState(false);
   const handleShow = () => {
     setIsShow(!isShow);
   };
-  function DisplayOpenRegister({ card }) {
-    if (card !== null) {
-      return (
-        <div
-          className="ku-card"
-          style={{ marginTop: 10 + "px", marginBottom: 10 + "px" }}
-        >
+  
+
+  function searchSubject(number) {
+    const results = subjects.filter((subject) =>
+      subject.subjectCode.includes(number)
+    );
+    console.log(results);
+    return results;
+  }
+  function updateSubject(number) {
+    setInputValue(number);
+    setUpdateSearch(searchSubject(number));
+  }
+
+  function DisplayOpenRegister({ selectedSubject }) {
+    // console.log(selectedSubject.sections);
+    if (selectedSubject !== null) {
+      return selectedSubject.sections.map((section) => {
+        return (
           <div
-            style={{
-              height: 4 + "px",
-              background: "grey",
-              opacity: 0.5,
-              borderTopLeftRadius: 5 + "px",
-              borderTopRightRadius: 5 + "px",
-            }}
-          ></div>
-          <div
-            className="ku-row"
-            style={{
-              marginTop: 10 + "px",
-              marginLeft: 5 + "px",
-              marginRight: 5 + "px",
-            }}
+            className="ku-card"
+            key={section.sectionCode}
+            style={{ marginTop: 10 + "px", marginBottom: 10 + "px" }}
           >
-            <div className="ku-column-75">
-              <div className="ku-row">
-                <section
-                  className="flex ku-basis-1-12 items-center"
-                  style={{
-                    minWidth: 100 + "px",
-                  }}
-                >
-                  <span style={{ fontWeight: 600, fontSize: 12 + "px" }}>
-                    01418101-64
-                  </span>
-                </section>
-                <div className="ku-basis-5-6">
-                  <div className="ku-row">
-                    <section
-                      className="flex items-center"
-                      style={{
-                        maxwidth: 120 + "px",
-                        paddingLeft: 0.5 + "rem",
-                        paddingRight: 0.5 + "rem",
-                      }}
-                    >
-                      <div
-                        className="flex ku-text"
-                        style={{ marginRight: 0.5 + "rem" }}
-                      >
-                        <div className="flex">หมู่</div>
-                        <span style={{ marginLeft: 0.5 + "rem" }}>11</span>
-                      </div>
-                      <section className="flex">
-                        <div>
-                          <span className="ku-badge orange ">ปฏิบัติ</span>
-                        </div>
-                      </section>
-                    </section>
-                    <section
-                      className="flex items-center"
-                      style={{
-                        paddingLeft: 0.5 + "rem",
-                        paddingRight: 0.5 + "rem",
-                      }}
-                    >
-                      <span className="ku-text block">1 หน่วยกิต</span>
-                      <span className="block" style={{ marginLeft: 1 + "rem" }}>
-                        <span>
-                          <div>
-                            <HiMiniChatBubbleLeftEllipsis
-                              style={{
-                                color: "rgb(3 ,169 ,107)",
-                                fontSize: 20 + "px",
-                              }}
-                            />
-                          </div>
-                        </span>
-                      </span>
-                      <span></span>
-                    </section>
-                    <div></div>
-                  </div>
-                </div>
-                <div></div>
-              </div>
-              <section
-                className=""
-                style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
-              >
+            <div
+              style={{
+                height: 4 + "px",
+                background: "grey",
+                opacity: 0.5,
+                borderTopLeftRadius: 5 + "px",
+                borderTopRightRadius: 5 + "px",
+              }}
+            ></div>
+            <div
+              className="ku-row cursor-pointer"
+              style={{
+                marginTop: 10 + "px",
+                marginLeft: 5 + "px",
+                marginRight: 5 + "px",
+              }}
+              onClick={handleShow}
+            >
+              <div className="ku-column-75">
                 <div className="ku-row">
-                  <div>
-                    <div className="ku-text">การใช้งานคอมพิวเตอร์</div>
-                    <div className="ku-text">Computer Applications</div>
-                    <div className="ku-text">
-                      <span>ประเภทหมู่เรียน : </span>ปกติ
-                    </div>
-                    <div className="ku-text">
-                      <span style={{ color: "rgb(3 ,169 ,107)" }}>
-                        สามารถเรียนทดแทนวิชา :{" "}
-                      </span>
-                      -
-                    </div>
-                  </div>
-                  <div className="flex justify-center  px-3">
-                    <span
-                      className="ku-text inline-block"
-                      style={{ alignSelf: "flex-start" }}
-                    >
-                      <span>
-                        <span>THU 13:00 - 15:00 </span>
-                        <span
-                          style={{
-                            whiteSpace: "normal",
-                            textAlign: "left",
-                            color: "rgb(101,109,151)",
-                            display: "inline-block",
-                            lineHeight: 1.7,
-                          }}
-                        >
-                          ห้อง ONLINE
-                        </span>
-                        <br />
-                      </span>
+                  <section
+                    className="flex ku-basis-1-12 items-center"
+                    style={{
+                      minWidth: 100 + "px",
+                    }}
+                  >
+                    <span style={{ fontWeight: 600, fontSize: 12 + "px" }}>
+                      {section.subjectCode}
                     </span>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div className="ku-column-25 px-3">
-              <div className="ku-row justify-start">
-                <section
-                  className="ku-basis-5-6 flex"
-                  style={{
-                    alignSelf: "center",
-                    marginTop: 5 + "px",
-                    marginBottom: 5 + "px",
-                  }}
-                >
-                  <div className="ku-row">
-                    <section className="qwerty col">
-                      55
-                      <p>จำนวนรับ</p>
-                    </section>
-                    <section className="qwerty col">
-                      38
-                      <p>ลงทะเบียนแล้ว</p>
-                    </section>
-                  </div>
-                </section>
-                <section className="ku-cursor  my-1.5 arrow  ">
-                  <div className="mt-2.5">
-                    <div onClick={handleShow}>
-                      {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
-          <div className={`${isShow ? "show" : "collapse"}`}>
-            <hr className=" mt-2 mb-1 " />
-          </div>
-
-          <div
-            className={`ku-row ${isShow ? "show" : "collapse"} my-2.5 mx-1.5  `}
-          >
-            <div className="basis-0 grow ">
-              <div className="ku-row my-0.5">
-                <section className="ku-basis-2-6 px-3">
-                  <div className="ku-row mb-1">
-                    <section>
-                      <div
-                        className="ku-text ku-basis-1-4 pr-0"
-                        style={{ color: "rgb(163,164,166)" }}
-                      >
-                        อาจารย์ผู้สอน
-                      </div>
-                    </section>
-                    <section>
-                      <div className="ku-text px-3">สุนทรี คุ้มไพโรจน์</div>
-                    </section>
-                  </div>
-                </section>
-                <section className="ku-basis-2-6 px-3">
-                  <div className="ku-row mb-4">
-                    <section
-                      className="ku-text ku-basis-2-6 px-3"
-                      style={{ color: "rgb(163,164,166)" }}
-                    >
-                      สาขาชั้นปีที่มีสิทธิ์
-                    </section>
-                    <section
-                      className="ku-text ku-basis-2-3 px-3"
-                      style={{ color: "rgb(163,164,166)" }}
-                    >
-                      -
-                    </section>
-
-                    <section className=""></section>
-                  </div>
-                  <div className="ku-row">
-                    <section className="ku-text ku-basis-2-6 px-3 block">
-                      <div
+                  </section>
+                  <div className="ku-basis-5-6">
+                    <div className="ku-row">
+                      <section
+                        className="flex items-center"
                         style={{
-                          color: "rgb(163,164,166)",
-                          fontSize: 11.5 + "px",
+                          maxwidth: 120 + "px",
+                          paddingLeft: 0.5 + "rem",
+                          paddingRight: 0.5 + "rem",
                         }}
                       >
-                        สาขาชั้นปีที่ไม่มีสิทธิ์
-                      </div>
-                    </section>
-                    <section className="ku-text ku-basis-2-3 px-3">
-                      <div style={{ color: "rgb(163,164,166)" }}>-</div>
-                    </section>
-
-                    <section className=""></section>
+                        <div
+                          className="flex ku-text"
+                          style={{ marginRight: 0.5 + "rem" }}
+                        >
+                          <div className="flex">หมู่</div>
+                          <span style={{ marginLeft: 0.5 + "rem" }}>
+                            {section.sectionCode}
+                          </span>
+                        </div>
+                        <section className="flex">
+                          <div>
+                            <span className="ku-badge orange ">
+                              {section.sectionTypeTh}
+                            </span>
+                          </div>
+                        </section>
+                      </section>
+                      <section
+                        className="flex items-center"
+                        style={{
+                          paddingLeft: 0.5 + "rem",
+                          paddingRight: 0.5 + "rem",
+                        }}
+                      >
+                        <span className="ku-text block">
+                          {selectedSubject.credit} หน่วยกิต
+                        </span>
+                        <span
+                          className="block"
+                          style={{ marginLeft: 1 + "rem" }}
+                        >
+                          <span>
+                            <div>
+                              <HiMiniChatBubbleLeftEllipsis
+                                style={{
+                                  color: "rgb(3 ,169 ,107)",
+                                  fontSize: 20 + "px",
+                                }}
+                              />
+                            </div>
+                          </span>
+                        </span>
+                        <span></span>
+                      </section>
+                      <div></div>
+                    </div>
                   </div>
-                </section>
-                <section className="ku-basis-2-6 px-3">
-                  <div className="ku-row mb-4">
-                    <section className="ku-text ku-basis-2-6 px-3">
-                      <div style={{ color: "rgb(163,164,166)" }}>
-                        สอบกลางภาค
-                      </div>
-                    </section>
-                    <section className="ku-text ku-basis-2-3 px-3">
-                      <div style={{ color: "rgb(163,164,166)" }}>-</div>
-                    </section>
-                  </div>
+                  <div></div>
+                </div>
+                <section
+                  className=""
+                  style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
+                >
                   <div className="ku-row">
-                    <section className="ku-text ku-basis-2-6 px-3">
-                      <div style={{ color: "rgb(163,164,166)" }}>
-                        สอบปลายภาค
+                    <div>
+                      <div className="ku-text">
+                        {selectedSubject.subjectNameTh}
                       </div>
-                    </section>
-                    <section className="ku-text ku-basis-2-3 px-3">
-                      <div style={{ color: "rgb(163,164,166)" }}>-</div>
-                    </section>
+                      <div className="ku-text">
+                        {selectedSubject.subjectNameEn}
+                      </div>
+                      <div className="ku-text">
+                        <span>ประเภทหมู่เรียน : </span>
+                        {section.stdStatusTh}
+                      </div>
+                      <div className="ku-text">
+                        <span style={{ color: "rgb(3 ,169 ,107)" }}>
+                          สามารถเรียนทดแทนวิชา :{" "}
+                        </span>
+                        -
+                      </div>
+                    </div>
+                    <div className="flex justify-center  px-3">
+                      <span
+                        className="ku-text inline-block"
+                        style={{ alignSelf: "flex-start" }}
+                      >
+                        <span>
+                          <span>{section.coursedate} </span>
+                          <span
+                            style={{
+                              whiteSpace: "normal",
+                              textAlign: "left",
+                              color: "rgb(101,109,151)",
+                              display: "inline-block",
+                              lineHeight: 1.7,
+                            }}
+                          >
+                            ห้อง {section.roomNameTh}
+                          </span>
+                          <br />
+                        </span>
+                      </span>
+                    </div>
                   </div>
                 </section>
               </div>
+              <div className="ku-column-25 px-3">
+                <div className="ku-row justify-start">
+                  <section
+                    className="ku-basis-5-6 flex"
+                    style={{
+                      alignSelf: "center",
+                      marginTop: 5 + "px",
+                      marginBottom: 5 + "px",
+                    }}
+                  >
+                    <div className="ku-row">
+                      <section className="qwerty col">
+                        {section.totalSeat}
+                        <p>จำนวนรับ</p>
+                      </section>
+                      <section className="qwerty col">
+                        {section.totalRegistered}
+                        <p>ลงทะเบียนแล้ว</p>
+                      </section>
+                    </div>
+                  </section>
+                  <section className="ku-cursor  my-1.5 arrow  ">
+                    <div className="mt-2.5">
+                      <div onClick={handleShow}>
+                        {isShow ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div className={`${isShow ? "show" : "collapse"}`}>
+              <hr className=" mt-2 mb-1 " />
+            </div>
+
+            <div
+              className={`ku-row ${
+                isShow ? "show" : "collapse"
+              } my-2.5 mx-1.5  `}
+            >
+              <div className="basis-0 grow ">
+                <div className="ku-row my-0.5">
+                  <section className="ku-basis-2-6 px-3">
+                    <div className="ku-row mb-1">
+                      <section>
+                        <div
+                          className="ku-text ku-basis-1-4 pr-0"
+                          style={{ color: "rgb(163,164,166)" }}
+                        >
+                          อาจารย์ผู้สอน
+                        </div>
+                      </section>
+                      <section>
+                        <div className="ku-text px-3">
+                          {section.teacherName}
+                        </div>
+                      </section>
+                    </div>
+                  </section>
+                  <section className="ku-basis-2-6 px-3">
+                    <div className="ku-row mb-4">
+                      <section
+                        className="ku-text ku-basis-2-6 px-3"
+                        style={{ color: "rgb(163,164,166)" }}
+                      >
+                        สาขาชั้นปีที่มีสิทธิ์
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        {section.property}
+                      </section>
+
+                      <section className=""></section>
+                    </div>
+                    <div className="ku-row">
+                      <section className="ku-text ku-basis-2-6 px-3 block">
+                        <div
+                          style={{
+                            color: "rgb(163,164,166)",
+                            fontSize: 11.5 + "px",
+                          }}
+                        >
+                          สาขาชั้นปีที่ไม่มีสิทธิ์
+                        </div>
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        <div>
+                          {section.nonProperty ? section.nonProperty : "-"}
+                        </div>
+                      </section>
+
+                      <section className=""></section>
+                    </div>
+                  </section>
+                  <section className="ku-basis-2-6 px-3">
+                    <div className="ku-row mb-4">
+                      <section className="ku-text ku-basis-2-6 px-3">
+                        <div style={{ color: "rgb(163,164,166)" }}>
+                          สอบกลางภาค
+                        </div>
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        <div>{section.midternDate}</div>
+                      </section>
+                    </div>
+                    <div className="ku-row">
+                      <section className="ku-text ku-basis-2-6 px-3">
+                        <div style={{ color: "rgb(163,164,166)" }}>
+                          สอบปลายภาค
+                        </div>
+                      </section>
+                      <section className="ku-text ku-basis-2-3 px-3">
+                        <div>{section.finalDate}</div>
+                      </section>
+                    </div>
+                  </section>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      });
     } else {
       return (
         <div className="ku-not-found-container">
@@ -283,12 +342,7 @@ function OpenRegister() {
       );
     }
   }
-  const [card, setCard] = useState({
-    title: "eiei",
-  });
-  const clearInfo = () => {
-    setCard(null);
-  };
+
   return (
     <div className="ku-layout-wrapper">
       <div className="ku-layout-inner">
@@ -314,7 +368,10 @@ function OpenRegister() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>6310451367 รวิภาส ดำเด่นงาม</span>
+                      <span>
+                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
+                        {me.lastNameTh}
+                      </span>
                     </span>
                   </div>
                   <div className="five">
@@ -327,18 +384,29 @@ function OpenRegister() {
           <div className="ku-content-layout">
             <div className="ku-content-container">
               <div>
-                <div style={{ paddingBottom: 16 }} className="">
+                <div style={{ paddingBottom: 16 + "px" }} className="">
                   <div className="ku-welcome-container">
                     <div
-                      style={{ paddingLeft: 12, paddingRight: 12 }}
+                      style={{
+                        paddingLeft: 12 + "px",
+                        paddingRight: 12 + "px",
+                      }}
                       className="ku-welcome-inner-left"
                     >
                       <div className="ku-welcome-text-box">
-                        <div style={{ marginRight: 24, fontSize: 21 + "px" }}>
+                        <div
+                          style={{
+                            marginRight: 24 + "px",
+                            fontSize: 21 + "px",
+                          }}
+                        >
                           รายวิชาที่เปิดให้ลงทะเบียน
                         </div>
                         <div
-                          style={{ marginTop: 16, marginBottom: 24 }}
+                          style={{
+                            marginTop: 16 + "px",
+                            marginBottom: 24 + "px",
+                          }}
                           className="row"
                         >
                           <div className="day">
@@ -364,7 +432,7 @@ function OpenRegister() {
                 <div>
                   <hr
                     style={{
-                      marginBottom: 24,
+                      marginBottom: 24 + "px",
                       marginLeft: -2 + "rem",
                       marginRight: -2 + "rem",
                     }}
@@ -392,12 +460,35 @@ function OpenRegister() {
                                     type="text"
                                     value={inputValue}
                                     onChange={(e) =>
-                                      setInputValue(e.target.value)
+                                      updateSubject(e.target.value)
                                     }
                                     className="ku-input-main ku-form-control"
                                     placeholder="รหัสวิชา ,ชื่อวิชา"
                                   ></input>
-                                  <div></div>
+                                  <div
+                                    className={`ku-result-layout ${
+                                      inputValue ? "" : "collapse"
+                                    }`}
+                                  >
+                                    {updateSearch.map((results) => (
+                                      <div
+                                        className="ku-result-box"
+                                        key={results.subjectCode}
+                                      >
+                                        <div
+                                          className="ku-result-content"
+                                          onClick={() => {
+                                            setSelectedSubject(results);
+                                            handleClearInput();
+                                          }}
+                                        >
+                                          <div>{results.subjectCode}</div>
+                                          <div>{results.subjectNameTh}</div>
+                                          <div>{results.subjectNameEn}</div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                               <button
@@ -585,14 +676,18 @@ function OpenRegister() {
                     <div className="ku-col-33">
                       <div style={{ fontSize: 17 + "px" }}>
                         จำนวนรับทั้งหมด: &nbsp;
-                        <span style={{ color: " rgb(94, 193, 212)" }}>0</span>
+                        <span style={{ color: " rgb(94, 193, 212)" }}>
+                          {totalSeat}
+                        </span>
                         คน
                       </div>
                     </div>
                     <div className="ku-col-33">
                       <div style={{ fontSize: 17 + "px" }}>
                         ลงทะเบียนแล้วทั้งหมด: &nbsp;
-                        <span style={{ color: " rgb(94, 193, 212)" }}>0</span>
+                        <span style={{ color: " rgb(94, 193, 212)" }}>
+                          {totalRegistered}
+                        </span>
                         คน
                       </div>
                     </div>
@@ -604,10 +699,7 @@ function OpenRegister() {
                     marginBottom: 0.25 + "rem",
                   }}
                 />
-                <DisplayOpenRegister card={card} />
-                <button type="button" onClick={clearInfo}>
-                  clear
-                </button>
+                <DisplayOpenRegister selectedSubject={selectedSubject} />
               </div>
             </div>
           </div>

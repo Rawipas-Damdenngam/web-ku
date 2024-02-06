@@ -1,4 +1,6 @@
 import "./news.css";
+import Subject from "../../../data/raw_subjects";
+import User from "../../../data/raw_users"; 
 import { Link, ScrollRestoration, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Day from "./currentDay";
@@ -18,6 +20,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import DrawerNew from "../drawer/drawer_new";
 
 function News() {
+  const me = User[1];
   const location = useLocation();
   const isPageActive = (page) => {
     return location.pathname === page;
@@ -266,7 +269,7 @@ function News() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>6310451367 รวิภาส ดำเด่นงาม</span>
+                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
                     </span>
                   </div>
                   <div className="five">

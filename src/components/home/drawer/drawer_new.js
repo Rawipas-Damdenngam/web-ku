@@ -1,3 +1,5 @@
+import Subject from "../../../data/raw_subjects";
+import User from "../../../data/raw_users";
 import { Link, ScrollRestoration, useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import {
@@ -26,6 +28,7 @@ function Drawer_new() {
   const handleDrawerOpen = () => {
     drawerContext.handleToggleDrawer();
   };
+  const me = User[1]
   return (
     <nav className={`ku-side-bar ${isDrawerOpen ? "" : "close"}`}>
       <div className="ku-side-bar-header">
@@ -34,8 +37,8 @@ function Drawer_new() {
         </div>
         <div className="four">
           <div className="text-container">
-            <div className="ku-name">รวิภาส ดำเด่นงาม</div>
-            <div className="ku-status">นิสิตปัจจุบัน</div>
+            <div className="ku-name">{me.firstNameTh} {me.lastNameTh}</div>
+            <div className="ku-status">{me.student.studentTypeNameTh}</div>
           </div>
         </div>
         <div className="two">

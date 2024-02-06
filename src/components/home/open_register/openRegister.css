@@ -215,7 +215,7 @@
   margin-top: 16px;
 }
 .ku-basis-1-12 {
-  flex: 0 0 8.3333%;
+  flex: 0 1 8.3333%;
   max-width: 8.3333%;
 }
 .ku-basis-2-12 {
@@ -299,4 +299,28 @@
 .collapse:not(.show) {
   display: none;
   transition: 0.5s;
+}
+.ku-result-layout {
+  display: flexbox;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 5px;
+  z-index: 2;
+  max-height: 250px;
+  overflow: auto;
+}
+.ku-result-box {
+  display: block;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.ku-result-box :hover {
+  background-color: #dedede;
+
+}
+.ku-result-content{
+  padding: 8px;
 }
