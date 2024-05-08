@@ -124,6 +124,7 @@ function Enroll() {
                   type="button"
                   onClick={() => {
                     addSubject();
+                    handleRegisterCancel();
                   }}
                   style={{ paddingLeft: 20 + "px", paddingRight: 20 + "px" }}
                 >
