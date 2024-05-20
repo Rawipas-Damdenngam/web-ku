@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "webku",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-05-15T03:22:21.932Z"
+}

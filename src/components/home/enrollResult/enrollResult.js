@@ -1,16 +1,11 @@
+import { useState } from "react";
+import { AiFillBell } from "react-icons/ai";
+import { IoIosArrowDown } from "react-icons/io";
+import { RiShutDownLine } from "react-icons/ri";
+import User from "../../../data/raw_users";
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
-import Subject from "../../../data/raw_subjects";
-import User from "../../../data/raw_users";
-import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
-import { LuFileSearch2 } from "react-icons/lu";
-import { RiShutDownLine } from "react-icons/ri";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaFileCircleExclamation } from "react-icons/fa6";
-import { BiSolidCalendarExclamation } from "react-icons/bi";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { useState } from "react";
 import "./enrollResult.css";
 function EnrollResult() {
   const me = User[1];
@@ -71,7 +66,10 @@ function EnrollResult() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
+                      <span>
+                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
+                        {me.lastNameTh}
+                      </span>
                     </span>
                   </div>
                   <div className="five">
@@ -84,7 +82,7 @@ function EnrollResult() {
           <div className="ku-content-layout">
             <div className="ku-content-container">
               <div style={{ height: 80 + "%" }}>
-                <div style={{}} className="">
+                <div style={{}}>
                   <div className="ku-welcome-container">
                     <div
                       style={{ paddingLeft: 12, paddingRight: 12 }}
@@ -101,7 +99,10 @@ function EnrollResult() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter flex">ภาคต้น&nbsp;<Year/></div>
+                          <div className="semeter flex">
+                            ภาคต้น&nbsp;
+                            <Year />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -168,7 +169,10 @@ function EnrollResult() {
                       </div>
                       <div className="flex">
                         <div>
-                          <span className="ku-badge-blue flex">ภาคต้น&nbsp;<Year/></span>
+                          <span className="ku-badge-blue flex">
+                            ภาคต้น&nbsp;
+                            <Year />
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -245,7 +249,6 @@ function EnrollResult() {
                     }}
                   >
                     <div
-                      className=""
                       style={{
                         padding: 16 + "px",
                         width: 300 + "px",

@@ -1,15 +1,12 @@
+import { AiFillBell } from "react-icons/ai";
+import { BiSolidCalendarExclamation } from "react-icons/bi";
+import { FaFileCircleExclamation } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
+import { RiShutDownLine } from "react-icons/ri";
+import User from "../../../data/raw_users";
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
-import Subject from"../../../data/raw_subjects";
-import User from "../../../data/raw_users";
-import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
-import { LuFileSearch2 } from "react-icons/lu";
-import { RiShutDownLine } from "react-icons/ri";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaFileCircleExclamation } from "react-icons/fa6";
-import{BiSolidCalendarExclamation} from "react-icons/bi";
-import { useState } from "react";
 import "./finance.css";
 function Finance() {
   const me = User[1];
@@ -38,7 +35,10 @@ function Finance() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
+                      <span>
+                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
+                        {me.lastNameTh}
+                      </span>
                     </span>
                   </div>
                   <div className="five">
@@ -51,7 +51,7 @@ function Finance() {
           <div className="ku-content-layout">
             <div className="ku-content-container">
               <div>
-                <div style={{}} className="">
+                <div style={{}}>
                   <div className="ku-welcome-container">
                     <div
                       style={{ paddingLeft: 12, paddingRight: 12 }}
@@ -68,7 +68,10 @@ function Finance() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter flex">ภาคต้น&nbsp;<Year/></div>
+                          <div className="semeter flex">
+                            ภาคต้น&nbsp;
+                            <Year />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -120,10 +123,10 @@ function Finance() {
                     }}
                   />
                   <div className="ku-not-found-text">
-                  ไม่พบปฎิทินการศึกษาตามกำหนดการ
+                    ไม่พบปฎิทินการศึกษาตามกำหนดการ
                     <br />
                     ของวันเลือกประเภทการลงทะเบียนและชำระเงิน
-                    <br/>
+                    <br />
                     กรุณาติดต่อเจ้าหน้าที่สำนักบริหารการศึกษา
                   </div>
                 </div>

@@ -1,23 +1,26 @@
-import Subject from "../../../data/raw_subjects";
-import User from "../../../data/raw_users";
-import { Link, ScrollRestoration, useLocation } from "react-router-dom";
-import { useContext, useState } from "react";
+import { generateClient } from "aws-amplify/api";
+import { useContext, useEffect, useState } from "react";
+import { AiOutlineMenu } from "react-icons/ai";
+import { BiSolidBookReader, BiSolidCalendar } from "react-icons/bi";
 import {
-  BsFillChatLeftDotsFill,
-  BsPersonCircle,
   BsGrid3X3GapFill,
+  BsPersonCircle
 } from "react-icons/bs";
-import { AiOutlineMenu, AiFillBell } from "react-icons/ai";
-import { BiSolidCalendar, BiSolidBookReader } from "react-icons/bi";
-import { RiShutDownLine, RiGraduationCapFill } from "react-icons/ri";
-import { FaDollarSign, FaThList, FaListUl, FaScroll } from "react-icons/fa";
+import { FaDollarSign, FaListUl, FaScroll, FaThList } from "react-icons/fa";
 import { MdAccountBox } from "react-icons/md";
-import "./drawer_new.css";
+import { RiGraduationCapFill } from "react-icons/ri";
+import { Link, useLocation } from "react-router-dom";
+import User from "../../../data/raw_users";
+import { getUser } from "../../../graphql/queries";
 import { DrawerContext } from "../../context/drawer_context";
+import "./drawer_new.css";
+
+const client = generateClient();
 
 function Drawer_new() {
   const drawerContext = useContext(DrawerContext);
   const isDrawerOpen = drawerContext.isDrawerOpen;
+  const [data, setData] = useState();
 
   const location = useLocation();
 
@@ -28,7 +31,26 @@ function Drawer_new() {
   const handleDrawerOpen = () => {
     drawerContext.handleToggleDrawer();
   };
-  const me = User[1]
+  const me = User[1];
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  async function fetchUser() {
+    try {
+      const userData = await client.graphql({
+        query: getUser,
+        variables: { id: "a1bce598-b79e-4090-afb3-eb10caad94f8" },
+      });
+      const data = await userData.data.getUser;
+      setData(data);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <nav className={`ku-side-bar ${isDrawerOpen ? "" : "close"}`}>
       <div className="ku-side-bar-header">
@@ -37,8 +59,10 @@ function Drawer_new() {
         </div>
         <div className="four">
           <div className="text-container">
-            <div className="ku-name">{me.firstNameTh} {me.lastNameTh}</div>
-            <div className="ku-status">{me.student.studentTypeNameTh}</div>
+            <div className="ku-name">
+              {data?.firstNameTh} {data?.lastNameTh}
+            </div>
+            <div className="ku-status">{data?.student.studentTypeNameTh}</div>
           </div>
         </div>
         <div className="two">

@@ -1,27 +1,32 @@
-import "./drawer.css";
-import { BsFillPersonFill } from "react-icons/bs";
+import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { BsFillPersonFill } from "react-icons/bs";
+import { FaList, FaThList } from "react-icons/fa";
+import {
+  FaBookOpenReader,
+  FaCalendarDays,
+  FaDollarSign,
+  FaScroll,
+} from "react-icons/fa6";
+import { IoAppsSharp } from "react-icons/io5";
+import { MdAccountBox } from "react-icons/md";
+import { RiGraduationCapFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
-import { FaCalendarDays ,FaBookOpenReader ,FaDollarSign ,FaScroll } from "react-icons/fa6";
-import {FaThList ,FaList} from "react-icons/fa";
-import {IoAppsSharp} from "react-icons/io5";
-import {RiGraduationCapFill} from "react-icons/ri";
-import {MdAccountBox} from "react-icons/md";
-import { useState, } from "react";
+import "./drawer.css";
 function Drawer() {
   const location = useLocation();
   const isPageActive = (page) => {
     return location.pathname === page;
   };
-const [width , setWidth] = useState(true);
+  const [width, setWidth] = useState(true);
 
-const handleDrawerOpen = () => {
-  setWidth(!width);
-  console.log(width);
-}
+  const handleDrawerOpen = () => {
+    setWidth(!width);
+    console.log(width);
+  };
   return (
-    <nav className="">
-      <div className={`ku-drawer-container ${width ? "": "close"}` }>
+    <nav>
+      <div className={`ku-drawer-container ${width ? "" : "close"}`}>
         <section className="ku-drawer-header-container">
           <div className="ku-person-icon-container">
             <div className="ku-person-icon-frame">
@@ -37,14 +42,15 @@ const handleDrawerOpen = () => {
           </section>
 
           <div className="ku-menu-icon-container">
-            <AiOutlineMenu onClick={handleDrawerOpen} className="ku-menu-icon" />
+            <AiOutlineMenu
+              onClick={handleDrawerOpen}
+              className="ku-menu-icon"
+            />
           </div>
         </section>
-        <section className={`ku-drawer-items-text ${width ? "":"close"}`}>
-          <div>
-            
-          </div>
-          <Link to="/news" className="">
+        <section className={`ku-drawer-items-text ${width ? "" : "close"}`}>
+          <div></div>
+          <Link to="/news">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/news") ? "selected" : ""
@@ -57,13 +63,13 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">ข่าวสารนิสิต</div>
                 </div>
               </div>
             </section>
           </Link>
-          <Link to="/subject" className="">
+          <Link to="/subject">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/subject") ? "selected" : ""
@@ -76,7 +82,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
                     ตารางเรียน/ตารางสอบ
                   </div>
@@ -84,7 +90,7 @@ const handleDrawerOpen = () => {
               </div>
             </section>
           </Link>
-          <Link to="/openRegister" className="">
+          <Link to="/openRegister">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/openRegister") ? "selected" : ""
@@ -97,15 +103,15 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
-                  วิชาที่เปิดให้ลงทะเบียน
+                    วิชาที่เปิดให้ลงทะเบียน
                   </div>
                 </div>
               </div>
             </section>
           </Link>
-          <Link to="/finance" className="">
+          <Link to="/finance">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/finance") ? "selected" : ""
@@ -118,7 +124,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
                     เลือกรูปแบบการเงิน
                   </div>
@@ -126,7 +132,7 @@ const handleDrawerOpen = () => {
               </div>
             </section>
           </Link>
-          <Link to="/enroll" className="">
+          <Link to="/enroll">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/enroll") ? "selected" : ""
@@ -139,7 +145,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
                     ลงทะเบียน/เพิ่ม-ถอน
                   </div>
@@ -147,7 +153,7 @@ const handleDrawerOpen = () => {
               </div>
             </section>
           </Link>
-          <Link to="/enrollResult" className="">
+          <Link to="/enrollResult">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/enrollResult") ? "selected" : ""
@@ -160,7 +166,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
                     ผลการลงทะเบียน
                   </div>
@@ -168,7 +174,7 @@ const handleDrawerOpen = () => {
               </div>
             </section>
           </Link>
-          <Link to="/grade" className="">
+          <Link to="/grade">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/grade") ? "selected" : ""
@@ -181,7 +187,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
                     ตรวจสอบผลการเรียน
                   </div>
@@ -189,7 +195,7 @@ const handleDrawerOpen = () => {
               </div>
             </section>
           </Link>
-          <Link to="/enrollHistory" className="">
+          <Link to="/enrollHistory">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/enrollHistory") ? "selected" : ""
@@ -202,7 +208,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">
                     ประวัติการลงทะเบียน
                   </div>
@@ -210,7 +216,7 @@ const handleDrawerOpen = () => {
               </div>
             </section>
           </Link>
-          <Link to="/dashboard" className="">
+          <Link to="/dashboard">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/dashboard") ? "selected" : ""
@@ -223,13 +229,13 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">สถิติ</div>
                 </div>
               </div>
             </section>
           </Link>
-          <Link to="/profile" className="">
+          <Link to="/profile">
             <section
               className={`ku-drawer-items-container ${
                 isPageActive("/profile") ? "selected" : ""
@@ -242,7 +248,7 @@ const handleDrawerOpen = () => {
                   </div>
                 </div>
 
-                <div className="">
+                <div>
                   <div className="ku-drawer-items-side-text">ประวัตินิสิต</div>
                 </div>
               </div>

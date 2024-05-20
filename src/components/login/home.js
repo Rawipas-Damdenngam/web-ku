@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Logo from "../../images/logo.png";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
-import "./home.css";
 import { Link } from "react-router-dom";
+import Logo from "../../images/logo.png";
+import "./home.css";
 
 function LoginHome() {
   const [isEyeOpen, setIsEyeOpen] = useState(false);

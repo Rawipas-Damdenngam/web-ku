@@ -1,15 +1,15 @@
+import { useEffect, useState } from "react";
+import { AiFillBell, AiFillHome, AiOutlineClose } from "react-icons/ai";
+import { HiMiniChatBubbleLeftEllipsis } from "react-icons/hi2";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { LuFileSearch2 } from "react-icons/lu";
+import { RiShutDownLine } from "react-icons/ri";
+import User from "../../../data/raw_users";
+import { subjects } from "../class/class";
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
-import User from "../../../data/raw_users";
 import "./openRegister.css";
-import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
-import { LuFileSearch2 } from "react-icons/lu";
-import { RiShutDownLine } from "react-icons/ri";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { HiMiniChatBubbleLeftEllipsis } from "react-icons/hi2";
-import { useState, useEffect } from "react";
-import { subjects } from "../class/class";
 
 function OpenRegister() {
   const me = User[1];
@@ -41,7 +41,6 @@ function OpenRegister() {
   const handleShow = () => {
     setIsShow(!isShow);
   };
-  
 
   function searchSubject(number) {
     const results = subjects.filter((subject) =>
@@ -155,7 +154,6 @@ function OpenRegister() {
                   <div></div>
                 </div>
                 <section
-                  className=""
                   style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
                 >
                   <div className="ku-row">
@@ -273,7 +271,7 @@ function OpenRegister() {
                         {section.property}
                       </section>
 
-                      <section className=""></section>
+                      <section></section>
                     </div>
                     <div className="ku-row">
                       <section className="ku-text ku-basis-2-6 px-3 block">
@@ -292,7 +290,7 @@ function OpenRegister() {
                         </div>
                       </section>
 
-                      <section className=""></section>
+                      <section></section>
                     </div>
                   </section>
                   <section className="ku-basis-2-6 px-3">
@@ -384,7 +382,7 @@ function OpenRegister() {
           <div className="ku-content-layout">
             <div className="ku-content-container">
               <div>
-                <div style={{ paddingBottom: 16 + "px" }} className="">
+                <div style={{ paddingBottom: 16 + "px" }}>
                   <div className="ku-welcome-container">
                     <div
                       style={{
@@ -439,7 +437,7 @@ function OpenRegister() {
                   />
                   <div className="ku-row">
                     <div className="ku-column-left">
-                      <div className="">
+                      <div>
                         <form>
                           <div className="ku-form-group">
                             <label className="ku-form-label">
@@ -451,10 +449,7 @@ function OpenRegister() {
                               </span>
                             </label>
                             <div className="ku-enroll-search ku-input-group">
-                              <div
-                                className=""
-                                style={{ position: "relative" }}
-                              >
+                              <div style={{ position: "relative" }}>
                                 <div style={{ position: "relative" }}>
                                   <input
                                     type="text"
@@ -564,9 +559,9 @@ function OpenRegister() {
                   <div className="ku-row">
                     <div className="ku-column-left">
                       <div className="ku-row">
-                        <div className="">
+                        <div>
                           <div className="ku-row">
-                            <div className="">
+                            <div>
                               <form>
                                 <div className="ku-form-group">
                                   <label>
@@ -591,7 +586,6 @@ function OpenRegister() {
                               </form>
                             </div>
                             <div
-                              className=""
                               style={{
                                 paddingLeft: 0.75 + "rem",
                                 paddingRight: 0.75 + "rem",
@@ -651,7 +645,6 @@ function OpenRegister() {
                     }}
                   >
                     <div
-                      className=""
                       style={{
                         textAlign: "right",
                         maxWidth: 33.333 + "%",

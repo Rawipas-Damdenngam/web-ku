@@ -1,15 +1,10 @@
+import { AiFillBell } from "react-icons/ai";
+import { IoIosArrowDown } from "react-icons/io";
+import { RiShutDownLine } from "react-icons/ri";
+import User from "../../../data/raw_users";
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
-import Subject from "../../../data/raw_subjects";
-import User from "../../../data/raw_users";
-import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
-import { LuFileSearch2 } from "react-icons/lu";
-import { RiShutDownLine } from "react-icons/ri";
-import { IoIosArrowDown } from "react-icons/io";
-import { FaFileCircleExclamation } from "react-icons/fa6";
-import { BiSolidCalendarExclamation } from "react-icons/bi";
-import { useState } from "react";
 import "./enrollHistory.css";
 function EnrollHistory() {
   const me = User[1];
@@ -38,7 +33,10 @@ function EnrollHistory() {
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
+                      <span>
+                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
+                        {me.lastNameTh}
+                      </span>
                     </span>
                   </div>
                   <div className="five">
@@ -51,7 +49,7 @@ function EnrollHistory() {
           <div className="ku-content-layout">
             <div className="ku-content-container">
               <div style={{ height: 80 + "%" }}>
-                <div style={{}} className="">
+                <div style={{}}>
                   <div className="ku-welcome-container">
                     <div
                       style={{ paddingLeft: 12, paddingRight: 12 }}

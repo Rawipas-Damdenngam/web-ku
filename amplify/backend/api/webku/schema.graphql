@@ -1,0 +1,135 @@
+input AMPLIFY {
+  globalAuthRule: AuthRule = {allow: public}
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  loginName: String!
+  userType: String!
+  idCode: String!
+  titleTh: String!
+  titleEn: String!
+  firstNameTh: String!
+  firstNameEn: String!
+  middleNameTh: String
+  middleNameEn: String
+  lastNameTh: String!
+  lastNameEn: String!
+  avatar: String
+  gender: String!
+  student: Student @hasOne
+  loginPassword: String!
+  enrollments: [Enrollment] @hasMany
+}
+
+type Student @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  loginName: String!
+  stdId: String!
+  stdCode: String!
+  titleTh: String!
+  titleEn: String!
+  firstNameTh: String!
+  middleNameTh: String
+  lastNameTh: String!
+  firstNameEn: String!
+  middleNameEn: String
+  lastNameEn: String!
+  copenId: String!
+  copenNameTh: String!
+  copenNameEn: String!
+  campusCode: String!
+  campusNameTh: String!
+  campusNameEn: String!
+  facultyCode: String!
+  facultyNameTh: String!
+  facultyNameEn: String!
+  departmentCode: String!
+  departmentNameTh: String!
+  departmentNameEn: String!
+  majorCode: String!
+  majorNameTh: String!
+  majorNameEn: String!
+  nationCode: String!
+  nationalityNameTh: String!
+  nationalityNameEn: String!
+  studentStatusCode: String!
+  studentStatusNameTh: String!
+  studentStatusNameEn: String!
+  studentTypeCode: String!
+  studentTypeNameTh: String!
+  studentTypeNameEn: String!
+  edulevelCode: String!
+  edulevelNameTh: String!
+  edulevelNameEn: String!
+  studentYear: String!
+  advisorId: String!
+  advisorNameTh: String!
+  advisorNameEn: String!
+  positionTh: String!
+  email: String!
+  mobileNo: String!
+  user: User @belongsTo
+}
+
+type Subject @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  subjectCode: String!
+  subjectNameTh: String!
+  subjectNameEn: String!
+  credit: String!
+  theoryHour: String!
+  practiceHour: String!
+  selfHour: String!
+  subjectType: String!
+  flagCur: String!
+  creditShow: String!
+  relateSubjectCode: String!
+  sections: [Section] @hasMany
+  enrollments: [Enrollment] @hasMany
+}
+
+type Section @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  academicYear: String!
+  semester: String!
+  campusCode: String!
+  sectionId: String!
+  subjectCode: String!
+  flagRegisCon: String!
+  subjectNameTh: String!
+  subjectNameEn: String!
+  maxCredit: String!
+  sectionCode: String!
+  sectionType: String!
+  sectionTypeTh: String!
+  sectionTypeEn: String!
+  studentStatusCode: String!
+  stdStatusTh: String!
+  stdStatusEn: String!
+  coursedate: String!
+  coursedateth: String!
+  coursedateen: String!
+  totalSeat: String!
+  totalRegistered: String!
+  teacherName: String!
+  teacherNameEn: String!
+  roomNameTh: String!
+  roomNameEn: String!
+  property: String!
+  nonProperty: String!
+  midternDate: String!
+  finalDate: String!
+  sectionStatus: String!
+  relateSubjectCode: String!
+  subject: Subject @belongsTo
+  enrollments: [Enrollment] @hasMany
+}
+
+type Enrollment @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  user: User @belongsTo
+  subject: Subject @belongsTo
+  section: Section @belongsTo
+  enrollType: String!
+} 
