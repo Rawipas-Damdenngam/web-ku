@@ -1,19 +1,18 @@
+import { generateClient } from "aws-amplify/api";
+import { useContext, useEffect, useState } from "react";
+import { AiFillBell, AiOutlineClose } from "react-icons/ai";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { RiShutDownLine } from "react-icons/ri";
+import User from "../../../data/raw_users";
+import { getEnrollment, getUser } from "../../../graphql/queries";
+import { SubjectContext } from "../../context/subject_context";
+import { subjects } from "../class/class";
 import DrawerNew from "../drawer/drawer_new";
 import Day from "../news/currentDay";
 import Year from "../news/currentYear";
-import Subject from "../../../data/raw_subjects";
-import User from "../../../data/raw_users";
-import { AiFillHome, AiOutlineClose, AiFillBell } from "react-icons/ai";
-import { LuFileSearch2 } from "react-icons/lu";
-import { RiShutDownLine } from "react-icons/ri";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { FaFileCircleExclamation } from "react-icons/fa6";
-import { BiSolidCalendarExclamation } from "react-icons/bi";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { useEffect, useState, useContext } from "react";
-import { subjects } from "../class/class";
 import "./enroll.css";
-import { SubjectContext } from "../../context/subject_context";
+
+const client = generateClient();
 
 function Enroll() {
   const me = User[1];
@@ -27,6 +26,40 @@ function Enroll() {
   const [isRegister, setIsRegister] = useState(false);
   const subjectContext = useContext(SubjectContext);
   const [selectSection, setSelectSeection] = useState(null);
+  const [data, setData] = useState();
+  const [enrollment, setEnrollment] = useState();
+
+  useEffect(() => {
+    fetchUser();
+    fetchEnrollment();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
+      const userData = await client.graphql({
+        query: getUser,
+        variables: { id: "a1bce598-b79e-4090-afb3-eb10caad94f8" },
+      });
+      const data = await userData.data.getUser;
+      setData(data);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const fetchEnrollment = async () => {
+    try {
+      const enrollData = await client.graphql({
+        query: getEnrollment,
+        variables: { id: "aecfca4a-930f-4583-8870-ad6cf7e1cd3c" },
+      });
+      const data = await enrollData.data.getEnrollment;
+      setEnrollment(data);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const addSubject = () => {
     subjectContext.addSubject(selectSection);
@@ -80,14 +113,10 @@ function Enroll() {
           <div>
             <div className="ku-row" style={{ padding: 20 + "px" }}>
               <div>
-                <span className="">ยืนยันการลงทะเบียน</span>
+                <span>ยืนยันการลงทะเบียน</span>
               </div>
               <div className="flex justify-end">
-                <button
-                  className=""
-                  type="button"
-                  onClick={handleRegisterCancel}
-                >
+                <button type="button" onClick={handleRegisterCancel}>
                   X
                 </button>
               </div>
@@ -258,7 +287,6 @@ function Enroll() {
                   </div>
                 </div>
                 <section
-                  className=""
                   style={{ marginTop: 5 + "px", marginBottom: 5 + "px" }}
                 ></section>
               </div>
@@ -303,7 +331,7 @@ function Enroll() {
                         {section.property}
                       </section>
 
-                      <section className=""></section>
+                      <section></section>
                     </div>
                     <div className="ku-row">
                       <section className="ku-text ku-basis-2-6 px-3 block">
@@ -322,7 +350,7 @@ function Enroll() {
                         </div>
                       </section>
 
-                      <section className=""></section>
+                      <section></section>
                     </div>
                   </section>
                   <section className="ku-basis-2-6 px-3">
@@ -410,7 +438,9 @@ function Enroll() {
                 <button
                   className=" ku-button-style ku-button-danger  "
                   type="button"
-                  onClick={() => {deleteSubject(section)}}
+                  onClick={() => {
+                    deleteSubject(section);
+                  }}
                   style={{ paddingLeft: 5 + "rem", paddingRight: 5 + "rem" }}
                 >
                   ถอน
@@ -427,7 +457,17 @@ function Enroll() {
         );
       });
     } else {
-      return <div>ไม่พบรายวิชาที่ลงทะเบียน</div>;
+      return (
+        <div
+          style={{
+            marginLeft: `1rem`,
+            paddingTop: `0.3rem`,
+            paddingBottom: `0.3rem`,
+          }}
+        >
+          ไม่พบรายวิชาที่ลงทะเบียน
+        </div>
+      );
     }
   };
 
@@ -460,8 +500,8 @@ function Enroll() {
                   <div className="four">
                     <span>
                       <span>
-                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
-                        {me.lastNameTh}
+                        {data?.idCode} {data?.titleTh} {data?.firstNameTh}{" "}
+                        {data?.lastNameTh}
                       </span>
                     </span>
                   </div>
@@ -475,7 +515,7 @@ function Enroll() {
           <div className="ku-content-layout">
             <div className="ku-content-container">
               <div style={{ height: 80 + "%" }}>
-                <div style={{}} className="">
+                <div style={{}}>
                   <div className="ku-welcome-container">
                     <div
                       style={{ paddingLeft: 12, paddingRight: 12 }}
@@ -498,7 +538,7 @@ function Enroll() {
                           </div>
                         </div>
                       </div>
-                      <div className="">
+                      <div>
                         <ShowRegisterConfirm isRegister={isRegister} />
                       </div>
                     </div>
@@ -568,7 +608,7 @@ function Enroll() {
                   </button>
                 </div>
 
-                <div className="">
+                <div>
                   <DisplayRegister selectedSubject={selectedSubject} />
                 </div>
                 <div className="ku-row px-3">
@@ -597,9 +637,13 @@ function Enroll() {
                   </div>
                   <div className="flex ku-text justify-end">
                     รวม &nbsp;
-                    <span style={{ color: "rgb(94,193,212)" }}>3</span>
+                    <span style={{ color: "rgb(94,193,212)" }}>
+                      {selectSection == null ? "0" : "99"}
+                    </span>
                     &nbsp;วิชา &nbsp;
-                    <span style={{ color: "rgb(94,193,212)" }}>9</span>
+                    <span style={{ color: "rgb(94,193,212)" }}>
+                      {selectSection == null ? "0" : +"99"}
+                    </span>
                     &nbsp;หน่วยกิต
                   </div>
                 </div>

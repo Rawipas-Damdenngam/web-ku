@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-webku-dev-a13ed-authRole",
+      "UnauthRoleArn": "arn:aws:iam::524143820791:role/amplify-webku-dev-a13ed-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::524143820791:role/amplify-webku-dev-a13ed-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-webku-dev-a13ed-deployment",
+      "UnauthRoleName": "amplify-webku-dev-a13ed-unauthRole",
+      "StackName": "amplify-webku-dev-a13ed",
+      "StackId": "arn:aws:cloudformation:us-east-1:524143820791:stack/amplify-webku-dev-a13ed/4d225bf0-0daf-11ef-aeb9-0affd982d99b",
+      "AmplifyAppId": "d2dy0pg301rqtq"
+    },
+    "categories": {
+      "api": {
+        "webku": {}
+      }
+    }
+  }
+}

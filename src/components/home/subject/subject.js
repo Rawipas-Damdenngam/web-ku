@@ -1,33 +1,22 @@
-import { Link, ScrollRestoration, useLocation } from "react-router-dom";
 import { useState } from "react";
-import "./subject.css";
-import Day from "../news/currentDay";
-import Year from "../news/currentYear";
-import Subject from "../../../data/raw_subjects";
-import User from "../../../data/raw_users";
 import {
-  BsFillChatLeftDotsFill,
-  BsPersonCircle,
-  BsGrid3X3GapFill,
-} from "react-icons/bs";
-import {
-  AiOutlineMenu,
   AiFillBell,
   AiOutlineLeft,
-  AiOutlineRight,
+  AiOutlineRight
 } from "react-icons/ai";
-import { BiSolidCalendar, BiSolidBookReader } from "react-icons/bi";
-import { RiShutDownLine, RiGraduationCapFill } from "react-icons/ri";
 import {
-  FaDollarSign,
-  FaThList,
-  FaListUl,
-  FaScroll,
-  FaSync,
+  BsFillChatLeftDotsFill
+} from "react-icons/bs";
+import {
+  FaSync
 } from "react-icons/fa";
-import { MdAccountBox } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
+import { RiShutDownLine } from "react-icons/ri";
+import User from "../../../data/raw_users";
 import DrawerNew from "../drawer/drawer_new";
+import Day from "../news/currentDay";
+import Year from "../news/currentYear";
+import "./subject.css";
 
 function Subjects() {
   const me = User[1];
@@ -93,12 +82,17 @@ function Subjects() {
                   </div>
                   <div className="two">
                     <div>TH</div>
-                    <div className="flex items-center"><IoIosArrowDown/></div>
+                    <div className="flex items-center">
+                      <IoIosArrowDown />
+                    </div>
                   </div>
                   <div className="three">|</div>
                   <div className="four">
                     <span>
-                      <span>{me.idCode} {me.titleTh} {me.firstNameTh} {me.lastNameTh}</span>
+                      <span>
+                        {me.idCode} {me.titleTh} {me.firstNameTh}{" "}
+                        {me.lastNameTh}
+                      </span>
                     </span>
                   </div>
                   <div className="five">
@@ -110,8 +104,8 @@ function Subjects() {
           </nav>
           <div className="ku-content-layout">
             <div className="ku-content-container">
-              <div style={{paddingBottom:90+"px"}}>
-                <div style={{ paddingBottom: 16 }} className="">
+              <div style={{ paddingBottom: 90 + "px" }}>
+                <div style={{ paddingBottom: 16 }}>
                   <div className="ku-welcome-container">
                     <div
                       style={{ paddingLeft: 12, paddingRight: 12 }}
@@ -128,7 +122,10 @@ function Subjects() {
                           <div className="day">
                             <Day />
                           </div>
-                          <div className="semeter flex">ภาคต้น&nbsp;<Year/></div>
+                          <div className="semeter flex">
+                            ภาคต้น&nbsp;
+                            <Year />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -262,12 +259,11 @@ function Subjects() {
                           <div className="ku-sun-right">
                             <div className="ku-row">
                               <div className="cols1">
-                                <div className="">01418490-60</div>
+                                <div>01418490-60</div>
                               </div>
                               <div className="cols2">
                                 <span>
-                                  หมู่
-                                  &nbsp;
+                                  หมู่ &nbsp;
                                   <span>201</span>
                                 </span>
                               </div>
@@ -295,23 +291,23 @@ function Subjects() {
                                   </div>
                                   <div>
                                     <span>ประเภทหมู่เรียน:</span>
-                                    &nbsp;
-                                    พิเศษ
+                                    &nbsp; พิเศษ
                                   </div>
                                 </div>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="div2"><span className="grade-text">ทั้งหมด</span>
-                        &nbsp;
-                        <span className="grade-number">1</span>
-                        &nbsp;
-                        <span className="grade-text">วิชา</span></div>
+                  <div className="div2">
+                    <span className="grade-text">ทั้งหมด</span>
+                    &nbsp;
+                    <span className="grade-number">1</span>
+                    &nbsp;
+                    <span className="grade-text">วิชา</span>
+                  </div>
                 </div>
               </div>
             </div>

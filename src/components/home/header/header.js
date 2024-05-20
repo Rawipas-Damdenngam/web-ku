@@ -1,7 +1,7 @@
-import "./header.css";
 import { BsBellFill } from "react-icons/bs";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { RiShutDownLine } from "react-icons/ri";
+import "./header.css";
 function Header() {
   return (
     <nav className="ku-header-container">
@@ -20,7 +20,7 @@ function Header() {
       </section>
 
       <section className="ku-header-person-info">
-        <div className="">6310451367</div>
+        <div>6310451367</div>
         <div className="pl-2">นาย รวิภาส ดำเด่นงาม</div>
       </section>
 
